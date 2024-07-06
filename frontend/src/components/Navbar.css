@@ -1,9 +1,32 @@
 .navbar {
     display: flex;
-    background-color: #758EB7;
+    background-color: #fff;
+    color: black;
     align-items: center;
     justify-content: flex-start;
     padding: 0.1em 1em;
+}
+
+.navbar-left {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-center {
+    flex: 2;
+    text-align: center;
+}
+
+.navbar-center h1 {
+    margin: 0;
+}
+
+.navbar-right {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 .navbar-logo {
@@ -20,7 +43,6 @@
 }
 
 .navbar ul li a {
-    color: #fff;
     text-decoration: none;
     padding: 10px 15px;
     transition: background-color 0.3s, color 0.3s;
@@ -28,5 +50,11 @@
 }
 
 .navbar ul li a:hover {
-    background-color: #52637E;
+    background-color: #D9D9D9;
+}
+
+.volume-icon {
+    color: black;
+    margin-left: 1em;
+    cursor: pointer;
 }

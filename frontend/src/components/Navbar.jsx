@@ -1,28 +1,47 @@
-import './Navbar.css'
-import React from 'react'
-import { Link } from 'react-router-dom'
+import './Navbar.css';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faVolumeUp, faVolumeMute } from '@fortawesome/free-solid-svg-icons';
+import logo from '../assets/images/default_logo.png';
 
-import logo from '../assets/images/default_logo.png'
+function Navbar({ pageTitle }) {
+  const [isMuted, setIsMuted] = useState(false);
 
-function Navbar() {
+  const toggleMute = () => {
+    setIsMuted(!isMuted);
+  };
+
   return (
     <nav className='navbar'>
+      <div className="navbar-left">
         <Link to="/">
-            <img src={logo} alt="logo" className="navbar-logo" />
+          <img src={logo} alt="logo" className="navbar-logo" />
         </Link>
+      </div>
+      <div className="navbar-center">
+        <h1>{pageTitle}</h1>
+      </div>
+      <div className="navbar-right">
         <ul>
-            <li>
-                <Link to="/">Home</Link>
-            </li>
-            <li>
-                <Link to="/exercicios">Exercícios</Link>
-            </li>
-            <li>
-                <Link to="/playlist">Playlist</Link>
-            </li>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/exercicios">Exercícios</Link>
+          </li>
+          <li>
+            <Link to="/playlist">Playlist</Link>
+          </li>
         </ul>
+        <FontAwesomeIcon
+          icon={isMuted ? faVolumeMute : faVolumeUp}
+          onClick={toggleMute}
+          className="volume-icon"
+        />
+      </div>
     </nav>
-  )
+  );
 }
 
 export default Navbar;
