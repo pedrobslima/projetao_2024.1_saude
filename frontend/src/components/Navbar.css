@@ -4,7 +4,8 @@
     color: black;
     align-items: center;
     justify-content: flex-start;
-    padding: 0.1em 1em;
+    padding: 0.1em 2em;
+    height: 40px;
 }
 
 .navbar-left {
@@ -30,12 +31,14 @@
 }
 
 .navbar-logo {
-    height: 40px;
+    height: 34px;
+    margin: 0em 1em;
 }
 
 .navbar ul {
     display: flex;
     list-style: none;
+    font-size: 0.8em;
 }
 
 .navbar ul li {
@@ -44,9 +47,10 @@
 
 .navbar ul li a {
     text-decoration: none;
-    padding: 10px 15px;
+    padding: 6px 9px;
     transition: background-color 0.3s, color 0.3s;
     border-radius: 25px;
+    color: black;
 }
 
 .navbar ul li a:hover {

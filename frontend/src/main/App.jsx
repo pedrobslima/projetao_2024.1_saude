@@ -3,6 +3,7 @@ import React from 'react'
 import { BrowserRouter, useLocation } from 'react-router-dom'
 
 import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
 import Routes from './Routes'
 import { getPageTitle } from '../utils/utils'
 
@@ -11,6 +12,7 @@ function App() {
     <BrowserRouter>
         <div className='app'>
           <AppContent />
+          <Footer />
         </div>
     </BrowserRouter>
   )
