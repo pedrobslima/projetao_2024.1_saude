@@ -5,34 +5,33 @@
     background-color: #fff;
     padding: 1em 4em 1em 5em;
     box-sizing: border-box; 
-    position: fixed;
     width: 100%;
-    bottom: 0;
     color: black;
     font-size: 0.8em;
+    margin-top: auto; /* Isso permite que o footer "empurre" para baixo */
 }
 
 .footer-left {
-    display: flex;
-    align-items: center;
+display: flex;
+align-items: center;
 }
 
 .footer-logo {
-    height: 70px; 
-    margin-right: 1.5em;
+height: 70px; 
+margin-right: 1.5em;
 }
 
 .footer-contact {
-    flex-direction: column;
-    align-self: flex-end;
-    margin-bottom: 0.5em;
+display: flex;
+flex-direction: column;
+margin-bottom: 0.5em;
 }
 
 .footer-contact p {
-    margin: 0;
+margin: 0;
 }
 
 .footer-right {
-    text-align: right;
-    align-self: flex-end; 
+text-align: right;
+align-self: flex-end; 
 }

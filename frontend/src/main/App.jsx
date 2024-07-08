@@ -23,7 +23,9 @@ function AppContent() {
   return (
     <>
       <Navbar pageTitle={getPageTitle(location.pathname)} />
-      <Routes />
+      <div className='content'>
+        <Routes />
+      </div>
     </>
   );
 }
