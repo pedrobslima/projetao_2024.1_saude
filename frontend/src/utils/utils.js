@@ -2,8 +2,8 @@ export const getPageTitle = (pathname) => {
   switch (pathname) {
     case "/":
       return "Home";
-    case "/playlist":
-      return "Playlist";
+    case "/musicoterapia":
+      return "Musicoterapia";
     case "/exercicios":
       return "Exercícios";
     default:

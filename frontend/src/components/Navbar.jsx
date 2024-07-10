@@ -31,7 +31,7 @@ function Navbar({ pageTitle }) {
             <Link to="/exercicios">Exercícios</Link>
           </li>
           <li>
-            <Link to="/playlist">Playlist</Link>
+            <Link to="/musicoterapia">Musicoterapia</Link>
           </li>
         </ul>
         <FontAwesomeIcon
