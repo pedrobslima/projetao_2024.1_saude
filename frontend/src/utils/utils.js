@@ -1,12 +1,11 @@
 export const getPageTitle = (pathname) => {
-  switch (pathname) {
-    case "/":
-      return "Home";
-    case "/playlist":
-      return "Playlist";
-    case "/exercicios":
-      return "Exercícios";
-    default:
-      return "";
+  if (pathname === "/") {
+    return "Home";
+  } else if (pathname.startsWith("/musica")) {
+    return "Musicoterapia";
+  } else if (pathname.startsWith("/exercicio")) {
+    return "Exercícios";
+  } else {
+    return "";
   }
 };

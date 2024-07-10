@@ -28,10 +28,10 @@ function Navbar({ pageTitle }) {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/exercicios">Exercícios</Link>
+            <Link to="/exercicio/pulso/1">Exercícios</Link> {/* link estático só para testes */}
           </li>
           <li>
-            <Link to="/playlist">Playlist</Link>
+            <Link to="/musica">Música</Link>
           </li>
         </ul>
         <FontAwesomeIcon
