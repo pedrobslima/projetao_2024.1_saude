@@ -1,0 +1,12 @@
+.button {
+    background-color: var(--color, #d9d9d9);
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .button:hover {
+    background-color: var(--hover_color, #c0c0c0);
+  }
