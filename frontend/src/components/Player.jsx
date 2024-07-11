@@ -4,6 +4,7 @@ import styles from './Player.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faRedoAlt } from '@fortawesome/free-solid-svg-icons';
 
+import VideoContainer from './VideoContainer';
 
 function Player({ type }) {
   return (
@@ -16,7 +17,9 @@ function Player({ type }) {
             <span className={styles.timer}>00:40</span>
         </div>
         <div className={styles.content}>
-            <div className={styles.videoContainer}></div>
+            <div className={styles.videoContainer}>
+              <VideoContainer type={type}/>
+            </div>
             <div className={styles.controls}>
             <button className={styles.playButton}>
                 <FontAwesomeIcon

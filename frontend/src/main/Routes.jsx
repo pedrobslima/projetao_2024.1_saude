@@ -2,7 +2,7 @@ import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 
 import Home from '../pages/Home'
-import Musicoterapia from '../pages/Musicoterapia'
+import Musicoterapia from '../pages/Musica/Musicoterapia'
 import ExerciseVideoPage from '../pages/Exercicio/ExerciseVideoPage'
 
 function AppRoutes() {
