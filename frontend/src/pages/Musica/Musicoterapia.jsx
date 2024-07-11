@@ -1,9 +1,9 @@
 import React from 'react'
-import Player from '../../components/Player';
+import MusicPlayer from '../../components/music/musicPlayer/MusicPlayer';
 
 function Musicoterapia() {
     return (
-        <Player type='musica'/>
+        <MusicPlayer/>
     );
 }
 
