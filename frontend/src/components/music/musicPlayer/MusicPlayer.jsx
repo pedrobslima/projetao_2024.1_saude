@@ -1,39 +1,33 @@
 import React from 'react';
 import styles from './MusicPlayer.module.css';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faRedoAlt } from '@fortawesome/free-solid-svg-icons';
 import VideoContainer from '../../VideoContainer';
 import PlayerHeader from '../../shared/playerHeader/PlayerHeader';
+import Controls from '../../shared/playerControls/PlayerControls';
+import Button from '../../shared/Button/Button';
+import PlayerDescription from '../../shared/playerDescription/PlayerDescription';
 
 function MusicPlayer({type=""}) {
   return (
-    <div className={styles.player}>
-      <div className={styles.playerContainer}>
+    <div className={styles.playerContainer}>
+      <div>
         <PlayerHeader title="Relaxe sua mente"/>
         <div className={styles.content}>
             <div className={styles.videoContainer}>
               <VideoContainer type={type}/>
             </div>
-            <div className={styles.controls}>
-            <button className={styles.playButton}>
-                <FontAwesomeIcon
-                icon={faPlay}
-                />
-            </button>
-            <button className={styles.repeatButton}>
-                <FontAwesomeIcon
-                icon={faRedoAlt}
-                />
-            </button>
-            <button className={styles.skipButton}>Pular</button>
-            <button className={styles.finishLaterButton}>Terminar mais tarde</button>
-            </div>
+            <Controls>
+              <Button><FontAwesomeIcon icon={faPlay}/></Button>
+              <Button><FontAwesomeIcon icon={faRedoAlt}/></Button>
+              <Button>Pular</Button>
+              <Button>Terminar mais tarde</Button>
+            </Controls>
         </div>
-        <div className={styles.description}>
-            <p>Descrição descrição</p>
-            <p>Descrição descrição</p>
-        </div>
+        <PlayerDescription>
+          <p>Descrição descrição</p>
+          <p>Descrição descrição</p>
+        </PlayerDescription>
       </div>
     </div>
   );
