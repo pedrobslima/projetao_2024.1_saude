@@ -4,9 +4,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faRedoAlt } from '@fortawesome/free-solid-svg-icons';
 import VideoContainer from '../../VideoContainer';
 import PlayerHeader from '../../shared/playerHeader/PlayerHeader';
-import Controls from '../../shared/playerControls/PlayerControls';
+import PlayerControls from '../../shared/playerControls/PlayerControls';
 import Button from '../../shared/Button/Button';
 import PlayerDescription from '../../shared/playerDescription/PlayerDescription';
+
 
 function MusicPlayer({type=""}) {
   return (
@@ -17,12 +18,12 @@ function MusicPlayer({type=""}) {
             <div className={styles.videoContainer}>
               <VideoContainer type={type}/>
             </div>
-            <Controls>
+            <PlayerControls>
               <Button><FontAwesomeIcon icon={faPlay}/></Button>
               <Button><FontAwesomeIcon icon={faRedoAlt}/></Button>
               <Button>Pular</Button>
               <Button>Terminar mais tarde</Button>
-            </Controls>
+            </PlayerControls>
         </div>
         <PlayerDescription>
           <p>Descrição descrição</p>

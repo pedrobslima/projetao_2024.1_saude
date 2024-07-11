@@ -3,7 +3,7 @@ import styles from "./PlayerControls.module.css"
 /*
     Estrutura de controles dos players.
 */
-const Controls = ({ children }) => {
+const PlayerControls = ({ children }) => {
     return (
         <div className={styles.controls}>
             {children}
@@ -11,4 +11,4 @@ const Controls = ({ children }) => {
     )
 }
 
-export default Controls
+export default PlayerControls
