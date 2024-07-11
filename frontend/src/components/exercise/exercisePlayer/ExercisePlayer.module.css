@@ -6,25 +6,6 @@
     padding: 20px;
   }
   
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #d9d9d9;
-    padding: 10px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-  }
-  
-  .title {
-    font-size: 1.5em;
-    margin: 0;
-  }
-  
-  .timer {
-    font-size: 1.2em;
-  }
-  
   .content {
     display: flex;
     justify-content: space-between;

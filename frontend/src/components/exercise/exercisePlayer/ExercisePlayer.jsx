@@ -1,21 +1,17 @@
 import React from 'react';
-import styles from './Player.module.css';
+import styles from './ExercisePlayer.module.css';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faRedoAlt } from '@fortawesome/free-solid-svg-icons';
 
-import VideoContainer from './VideoContainer';
+import VideoContainer from '../../VideoContainer';
+import PlayerHeader from '../../shared/playerHeader/PlayerHeader';
 
 function Player({ type }) {
   return (
     <div className={styles.player}>
       <div className={styles.playerContainer}>
-        <div className={styles.header}>
-            <h1 className={styles.title}>
-              {type === 'exercicio' ? 'Nome do exercício' : 'Relaxe sua mente'}
-            </h1>
-            <span className={styles.timer}>00:40</span>
-        </div>
+        <PlayerHeader title="Nome do Exercício"/>
         <div className={styles.content}>
             <div className={styles.videoContainer}>
               <VideoContainer type={type}/>
