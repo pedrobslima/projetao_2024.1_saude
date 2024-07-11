@@ -1,0 +1,16 @@
+.description {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.description p {
+    flex: 1;
+    margin: 0 10px;
+    text-align: left;
+    display: inline-block; 
+    min-width: 50%;
+    word-wrap: break-word;
+}
