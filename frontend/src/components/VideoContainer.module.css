@@ -2,7 +2,7 @@
   display: flex;
 }
 
-.videoContainer iframe {
+.videoContainer video {
   flex: 1;
   border-radius: 8px;
 }
