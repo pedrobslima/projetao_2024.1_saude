@@ -1,10 +1,8 @@
 .videoContainer {
-    display: flex;
+  display: flex;
 }
 
 .videoContainer iframe {
-    flex: 1;
-    width: 560px;
-    height: 315px;
-    border-radius: 8px;
+  flex: 1;
+  border-radius: 8px;
 }
