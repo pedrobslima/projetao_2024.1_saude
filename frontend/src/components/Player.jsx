@@ -1,28 +1,37 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import styles from "./Player.module.css";
 import { useNavigate } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlay, faRedoAlt } from "@fortawesome/free-solid-svg-icons";
+import { faPlay, faPause, faRedoAlt } from "@fortawesome/free-solid-svg-icons";
 
 import VideoContainer from "./VideoContainer";
 
 const Player = () => {
   const navigate = useNavigate();
+  const videoRef = useRef(null);
+  const [isPaused, setIsPaused] = useState(false);
 
   const handleConcludedClick = (id) => {
     navigate("./completo");
+  };
+
+  const handlePlayPauseClick = () => {
+    if (videoRef.current) {
+      videoRef.current.togglePlayPause();
+      setIsPaused(!isPaused);
+    }
   };
 
   return (
     <div>
       <div className={styles.content}>
         <div className={styles.videoContainer}>
-          <VideoContainer type="exercicio" />
+          <VideoContainer ref={videoRef} type="exercicio" />
         </div>
         <div className={styles.controls}>
-          <button className={styles.playButton}>
-            <FontAwesomeIcon icon={faPlay} />
+          <button className={styles.playButton} onClick={handlePlayPauseClick}>
+            <FontAwesomeIcon icon={isPaused ? faPlay : faPause} />
           </button>
           <button className={styles.repeatButton}>
             <FontAwesomeIcon icon={faRedoAlt} />
