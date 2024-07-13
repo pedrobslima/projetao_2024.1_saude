@@ -7,9 +7,10 @@ import { faPlay, faPause, faRedoAlt } from "@fortawesome/free-solid-svg-icons";
 
 import VideoContainer from "./VideoContainer";
 
-const Player = () => {
+const Player = ({ onTimeUpdate }) => {
   const navigate = useNavigate();
   const videoRef = useRef(null);
+
   const [isPaused, setIsPaused] = useState(false);
 
   const handleConcludedClick = (id) => {
@@ -27,7 +28,11 @@ const Player = () => {
     <div>
       <div className={styles.content}>
         <div className={styles.videoContainer}>
-          <VideoContainer ref={videoRef} type="exercicio" />
+          <VideoContainer
+            ref={videoRef}
+            onTimeUpdate={onTimeUpdate}
+            type="exercicio"
+          />
         </div>
         <div className={styles.controls}>
           <button className={styles.playButton} onClick={handlePlayPauseClick}>
