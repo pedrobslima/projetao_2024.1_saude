@@ -1,0 +1,20 @@
+.favoriteMusicalGenres {
+  display: flex;
+  margin: 20px;
+  align-items: end;
+  gap: 10px;
+}
+
+.stylesList {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  background-color: #d9d9d9;
+  padding: 10px;
+}
+
+.styleItem {
+  padding: 0px 10px;
+  font-weight: bold;
+  font-size: 0.8em;
+}

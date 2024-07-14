@@ -1,0 +1,11 @@
+.settings {
+  margin: 30px 20px;
+}
+
+button {
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #d3d3d3;
+  border: none;
+  cursor: pointer;
+}
