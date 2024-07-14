@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSadCry, faFrown, faSmile } from "@fortawesome/free-solid-svg-icons";
 import styles from "./FeelingStatusButton.module.css";
 
-const FeelingStatusButton = ({ status }) => {
+const FeelingStatusButton = ({ status, onClick }) => {
   const getStatusContent = (status) => {
     switch (status) {
       case 1:
@@ -26,7 +26,7 @@ const FeelingStatusButton = ({ status }) => {
   return (
     <div className={styles.feelingBox}>
       <p>{text}</p>
-      <button className={styles.feelingButton}>
+      <button className={styles.feelingButton} onClick={onClick}>
         <FontAwesomeIcon icon={icon} className={styles.icon} />
       </button>
     </div>

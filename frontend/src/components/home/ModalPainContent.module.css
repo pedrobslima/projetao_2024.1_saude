@@ -1,0 +1,22 @@
+h2 {
+  margin: 0px;
+  font-style: italic;
+}
+
+.icon {
+  height: 50px;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: nowrap;
+}
+
+.buttons div {
+  text-align: center;
+}
+
+.areaButton {
+  background-color: #d9d9d9;
+}
