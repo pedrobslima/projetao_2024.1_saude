@@ -10,6 +10,8 @@ function AppRoutes() {
         <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/musica' element={<Musicoterapia />} />
+            <Route path='/musica/:playlistId' element={<Musicoterapia />} />
+            <Route path='/musica/:playlistId/:musicaId' element={<Musicoterapia />} />
             <Route path='/exercicio/:area/:id' element={<ExerciseVideoPage />} />
         </Routes>
     );
