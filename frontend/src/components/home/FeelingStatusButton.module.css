@@ -22,3 +22,7 @@
   border: none;
   cursor: pointer;
 }
+
+.feelingButton:hover {
+  background-color: #c0c0c0;
+}
