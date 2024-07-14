@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom'
 import Home from '../pages/Home'
 import Musicoterapia from '../pages/Musica/Musicoterapia'
 import ExerciseVideoPage from '../pages/Exercicio/ExerciseVideoPage'
+import ExerciseComplete from '../pages/Exercicio/ExerciseCompletePage'
 
 function AppRoutes() {
     return (
@@ -13,6 +14,7 @@ function AppRoutes() {
             <Route path='/musica/:playlistId' element={<Musicoterapia />} />
             <Route path='/musica/:playlistId/:musicaId' element={<Musicoterapia />} />
             <Route path='/exercicio/:area/:id' element={<ExerciseVideoPage />} />
+            <Route path='/exercicio/:area/:id/completo' element={<ExerciseComplete />} />
         </Routes>
     );
 }

@@ -1,22 +1,65 @@
-import React from 'react'
-import styles from './VideoContainer.module.css'
+import React, { forwardRef, useImperativeHandle, useRef } from "react";
+import styles from "./VideoContainer.module.css";
+import { useEffect } from "react";
 
-function VideoContainer({ type }) {
-const videoUrl = ['https://www.youtube.com/embed/tf8phrV7Dq0?si=snSzMxorvjcKuPFH', 'https://www.youtube.com/embed/Ef6LwAaB3_E?si=GRDkqnZ6ZHc4YJgp&amp;start=26']
+import video from "../assets/videos/exercise_video.mp4";
+
+const VideoContainer = forwardRef((props, ref) => {
+  const videoRef = useRef(null);
+
+  useImperativeHandle(ref, () => ({
+    play: () => {
+      if (videoRef.current) {
+        videoRef.current.play();
+      }
+    },
+    pause: () => {
+      if (videoRef.current) {
+        videoRef.current.pause();
+      }
+    },
+    togglePlayPause: () => {
+      if (videoRef.current) {
+        if (videoRef.current.paused) {
+          videoRef.current.play();
+        } else {
+          videoRef.current.pause();
+        }
+      }
+    },
+    getTimeLeft: () => {
+      if (videoRef.current) {
+        const duration = videoRef.current.duration;
+        const currentTime = videoRef.current.currentTime;
+        return Math.max(0, duration - currentTime);
+      }
+      return 0;
+    },
+  }));
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (props.onTimeUpdate && videoRef.current) {
+        const timeLeft = ref.current.getTimeLeft();
+        props.onTimeUpdate(timeLeft);
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [props, ref]);
+
   return (
     <div className={styles.videoContainer}>
-        <iframe width="560" height="315" 
-            src={type === 'exercicio' ? videoUrl[1] : videoUrl[0]} 
-            title="YouTube video player" 
-            frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-            referrerpolicy="strict-origin-when-cross-origin" 
-            allowfullscreen>
-        </iframe>
+      <video
+        ref={videoRef}
+        width="560"
+        height="300"
+        src={video}
+        controls={false}
+        autoPlay
+      />
     </div>
   );
-}
+});
 
-
-
-export default VideoContainer
+export default VideoContainer;

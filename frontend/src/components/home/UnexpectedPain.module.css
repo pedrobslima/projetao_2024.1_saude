@@ -1,0 +1,12 @@
+.unexpectedPain {
+  margin: 50px 20px;
+}
+
+.unexpectedPain h3 {
+  margin-bottom: 0px;
+}
+
+.painOptions {
+  display: flex;
+  gap: 10px;
+}

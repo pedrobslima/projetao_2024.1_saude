@@ -1,43 +1,34 @@
-import React from 'react';
-import styles from './ExercisePlayer.module.css';
+import React, { useState } from "react";
+import styles from "./ExercisePlayer.module.css";
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlay, faRedoAlt } from '@fortawesome/free-solid-svg-icons';
+import PlayerHeader from "../../shared/playerHeader/PlayerHeader";
+import Player from "../../Player";
 
-import VideoContainer from '../../VideoContainer';
-import PlayerHeader from '../../shared/playerHeader/PlayerHeader';
+function ExercisePlayer({ type }) {
+  const [timeLeft, setTimeLeft] = useState(0);
 
-function Player({ type }) {
+  const handleTimeUpdate = (time) => {
+    setTimeLeft(time);
+  };
+
+  const formatTime = (seconds) => {
+    const minutes = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${minutes}:${secs < 10 ? "0" : ""}${secs}`;
+  };
+
   return (
     <div className={styles.player}>
       <div className={styles.playerContainer}>
-        <PlayerHeader title="Nome do Exercício"/>
-        <div className={styles.content}>
-            <div className={styles.videoContainer}>
-              <VideoContainer type={type}/>
-            </div>
-            <div className={styles.controls}>
-            <button className={styles.playButton}>
-                <FontAwesomeIcon
-                icon={faPlay}
-                />
-            </button>
-            <button className={styles.repeatButton}>
-                <FontAwesomeIcon
-                icon={faRedoAlt}
-                />
-            </button>
-            <button className={styles.skipButton}>Pular</button>
-            <button className={styles.finishLaterButton}>Terminar mais tarde</button>
-            </div>
-        </div>
+        <PlayerHeader title="Nome do Exercício" time={formatTime(timeLeft)} />
+        <Player onTimeUpdate={handleTimeUpdate} />
         <div className={styles.description}>
-            <p>Descrição descrição</p>
-            <p>Descrição descrição</p>
+          <p>Descrição descrição</p>
+          <p>Descrição descrição</p>
         </div>
       </div>
     </div>
   );
 }
 
-export default Player;
+export default ExercisePlayer;

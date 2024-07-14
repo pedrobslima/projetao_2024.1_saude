@@ -1,0 +1,62 @@
+.breakTimes {
+  margin: 40px 20px;
+}
+
+.breakList {
+  display: flex;
+  gap: 10px;
+}
+
+.rightContainer {
+  display: flex;
+  align-items: end;
+}
+
+.leftContainer {
+  max-width: 200px;
+}
+
+.firstBreakItem {
+  margin-bottom: 10px;
+  padding: 5px;
+  background-color: #d9d9d9;
+  border-radius: 14px;
+  width: 185px;
+}
+
+.nextSchedule {
+  font-weight: bold;
+  font-size: 0.8em;
+  margin: 5px;
+}
+
+.firstBreakItem div {
+  display: flex;
+  justify-content: center;
+  margin: 5px;
+  gap: 10px;
+}
+
+.nextScheduleTimer {
+  font-size: 1.8em;
+  font-weight: bold;
+  margin: 0;
+}
+
+.remainingBreakItems {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.breakItem {
+  display: flex;
+  align-items: center;
+}
+
+.breakItem div {
+  background-color: #d9d9d9;
+  border-radius: 10px;
+  padding: 15px;
+  font-weight: bold;
+}
