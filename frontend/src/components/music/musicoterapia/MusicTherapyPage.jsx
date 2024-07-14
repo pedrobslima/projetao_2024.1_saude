@@ -9,20 +9,23 @@ import Button from '../../shared/Button/Button';
 import PlayerDescription from '../../shared/playerDescription/PlayerDescription';
 import musics from "./musics.json"
 import { useParams } from 'react-router-dom';
-import { getParamId } from '../../../utils/utils';
+import { getParamId, changeUrl } from '../../../utils/utils';
 
 
-function MusicPlayer({type=""}) {
-  // Variaveis:
-  const {playlistId, musicaId} = useParams()
-  const [currentIndex, setCurrentIndex] = useState(-1)
-  const [playlist, setPlaylist] = useState([])
+function MusicPlayer({}) {
+  // Constanttes:
+  const baseUrl = "/musica"
   const noMusic = {
     "Titulo": "",
     "Artista": "",
     "Genero": "",
     "Link": ""
   }
+
+  // Variaveis:
+  const {playlistId, setPlaylistId, musicaId, setMusicId} = useParams()
+  const [currentMusicIndex, setcurrentMusicIndex] = useState(-1)
+  const [playlist, setPlaylist] = useState([])
   const [currentMusic, setCurrentMusic] = useState(noMusic)
   const [isPlaying, setIsPlaying] = useState(true)
 
@@ -47,7 +50,7 @@ function MusicPlayer({type=""}) {
 
   const playMusic = () => {
     let audio = document.getElementById("audioPlayer")
-    if (audio) {
+    if (audio && canPlayAudio()) {
       audio.play()
       setIsPlaying(true)
     }
@@ -55,7 +58,7 @@ function MusicPlayer({type=""}) {
   
   const pauseMusic = () => {
     let audio = document.getElementById("audioPlayer")
-    if (audio) {
+    if (audio && canPlayAudio()) {
       audio.pause()
       setIsPlaying(false)
     }
@@ -63,18 +66,38 @@ function MusicPlayer({type=""}) {
 
   const restartMusic = () => {
     let audio = document.getElementById("audioPlayer");
-    if (audio) {
+    if (audio && canPlayAudio()) {
       audio.currentTime = 0
       audio.play()
       setIsPlaying(true)
     }
   }
 
+  const nextMusic = () => {
+    let nextMusicIndex = currentMusicIndex + 1
+    if (nextMusicIndex >= playlist.length) {
+      nextMusicIndex = 0
+    }
+    changeUrl(`${baseUrl}/${getParamId(playlistId)}/${nextMusicIndex}`)
+  }
+
+  const previousMusic = () => {
+    let previousMusicIndex = currentMusicIndex -1
+    if (previousMusicIndex < 0) {
+      previousMusicIndex = playlist.length - 1
+    }
+    changeUrl(`${baseUrl}/${getParamId(playlistId)}/${previousMusicIndex}`)
+  }
+
+  const canPlayAudio = () => {
+    return currentMusicIndex >= 0 && currentMusicIndex < playlist.length
+  }
+
   useEffect(() => {
-    setCurrentIndex(getParamId(musicaId))
+    setcurrentMusicIndex(getParamId(musicaId))
     setPlaylist(musics)
-    setCurrentMusic(getMusicInfo(playlist, currentIndex))
-  }, [currentIndex, playlist])
+    setCurrentMusic(getMusicInfo(playlist, currentMusicIndex))
+  }, [currentMusicIndex, playlist])
 
   return (
     <div className={styles.playerContainer}>
@@ -88,8 +111,8 @@ function MusicPlayer({type=""}) {
             <PlayerControls>
               <Button onClick={PlayPauseMusic}><FontAwesomeIcon icon={isPlaying === true ? faPlay : faPause}/></Button>
               <Button onClick={restartMusic}><FontAwesomeIcon icon={faRedoAlt}/></Button>
-              <Button>Proxima</Button>
-              <Button>Anterior</Button>
+              <Button onClick={nextMusic}>Proxima</Button>
+              <Button onClick={previousMusic}>Anterior</Button>
             </PlayerControls>
         </div>
         <PlayerDescription>

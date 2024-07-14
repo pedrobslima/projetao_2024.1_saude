@@ -18,3 +18,7 @@ export const getParamId = (paramId) => {
     return +paramId // + converte de string para numero.
   }
 }
+
+export const changeUrl = (url) => {
+  window.location.href = url
+}
