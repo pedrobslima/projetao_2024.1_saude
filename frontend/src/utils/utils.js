@@ -19,6 +19,12 @@ export const getParamId = (paramId) => {
   }
 }
 
+export const formatTime = (seconds) => {
+  const minutes = Math.floor(seconds / 60);
+  const secs = Math.floor(seconds % 60);
+  return `${minutes}:${secs < 10 ? "0" : ""}${secs}`;
+};
+
 export const changeUrl = (url) => {
   window.location.href = url
 }
