@@ -1,10 +1,10 @@
-import './Footer.css';
-import React from 'react';
-import logo from '../assets/images/default_logo.png';
+import "./Footer.css";
+import React from "react";
+import logo from "../assets/images/logo.png";
 
 function Footer() {
   return (
-    <footer className='footer'>
+    <footer className="footer">
       <div className="footer-left">
         <img src={logo} alt="logo" className="footer-logo" />
         <div className="footer-contact">
