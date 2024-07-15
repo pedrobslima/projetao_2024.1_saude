@@ -4,17 +4,13 @@ import styles from "./ExercisePlayer.module.css";
 import PlayerHeader from "../../shared/playerHeader/PlayerHeader";
 import Player from "../../Player";
 
+import { formatTime } from "../../../utils/utils";
+
 function ExercisePlayer({ type }) {
   const [timeLeft, setTimeLeft] = useState(0);
 
   const handleTimeUpdate = (time) => {
     setTimeLeft(time);
-  };
-
-  const formatTime = (seconds) => {
-    const minutes = Math.floor(seconds / 60);
-    const secs = Math.floor(seconds % 60);
-    return `${minutes}:${secs < 10 ? "0" : ""}${secs}`;
   };
 
   return (

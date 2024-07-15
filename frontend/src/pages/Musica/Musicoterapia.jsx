@@ -1,5 +1,5 @@
 import React from 'react'
-import MusicPlayer from '../../components/music/musicPlayer/MusicPlayer';
+import MusicPlayer from '../../components/music/musicoterapia/MusicTherapyPage';
 import styles from "./Musicoterapia.module.css"
 
 function Musicoterapia() {
