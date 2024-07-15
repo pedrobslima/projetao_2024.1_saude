@@ -1,78 +1,91 @@
-import { useState, useContext, useEffect, useRef, forwardRef, useImperativeHandle } from "react"
-import { MainContext } from "../../context/MainContext"
+import {
+  useState,
+  useContext,
+  useEffect,
+  useRef,
+  forwardRef,
+  useImperativeHandle,
+} from "react";
+import MainContext from "../../context/MainContext";
 
-const MusicPlayer = forwardRef(({props, link, canPlay, sendTime, ended}, ref) => {
-
+const MusicPlayer = forwardRef(
+  ({ props, link, canPlay, sendTime, ended }, ref) => {
     // Variaveis:
-    const [isPlaying, setIsPlaying] = useState(true)
-    const [isMute] = useContext(MainContext).sound.mute
-    const [time, setTime] = useState(0)
+    const [isPlaying, setIsPlaying] = useState(true);
+    const [isMute] = useContext(MainContext).sound.mute;
+    const [time, setTime] = useState(0);
 
     // Refs:
     ref.PlayPauseMusic = () => {
-        if (isPlaying){
-            pauseMusic()
-        }
-        else {
-            playMusic()
-        }
-    }
+      if (isPlaying) {
+        pauseMusic();
+      } else {
+        playMusic();
+      }
+    };
 
     ref.restartMusic = () => {
-        let audio = document.getElementById("audioPlayer")
-        if (audio && canPlay) {
-            audio.currentTime = 0
-            audio.play()
-            setIsPlaying(true)
-        }
-    }
+      let audio = document.getElementById("audioPlayer");
+      if (audio && canPlay) {
+        audio.currentTime = 0;
+        audio.play();
+        setIsPlaying(true);
+      }
+    };
 
     // Funcoes:
     const playMusic = () => {
-        let audio = document.getElementById("audioPlayer")
-        if (audio && canPlay) {
-            audio.play()
-            setIsPlaying(true)
-        }
-    }
-    
+      let audio = document.getElementById("audioPlayer");
+      if (audio && canPlay) {
+        audio.play();
+        setIsPlaying(true);
+      }
+    };
+
     const pauseMusic = () => {
-        let audio = document.getElementById("audioPlayer")
-        if (audio && canPlay) {
-            audio.pause()
-            setIsPlaying(false)
-        }
-    }
+      let audio = document.getElementById("audioPlayer");
+      if (audio && canPlay) {
+        audio.pause();
+        setIsPlaying(false);
+      }
+    };
 
     const setMute = () => {
-        let audio = document.getElementById("audioPlayer")
-        if (audio && canPlay) {
-            audio.muted = isMute
-        }
-    }
+      let audio = document.getElementById("audioPlayer");
+      if (audio && canPlay) {
+        audio.muted = isMute;
+      }
+    };
 
     const updateTime = () => {
-        setTime(getTimeLeft())
-        sendTime(time)
-    }
+      setTime(getTimeLeft());
+      sendTime(time);
+    };
 
     const getTimeLeft = () => {
-        let audio = document.getElementById("audioPlayer")
-        if (audio && canPlay) {
-          const duration = audio.duration;
-          const currentTime = audio.currentTime;
-          return Math.max(0, duration - currentTime);
-        }
-        return 0;
-    }
+      let audio = document.getElementById("audioPlayer");
+      if (audio && canPlay) {
+        const duration = audio.duration;
+        const currentTime = audio.currentTime;
+        return Math.max(0, duration - currentTime);
+      }
+      return 0;
+    };
 
     useEffect(() => {
-        setMute()
-    }, [ref, link, canPlay, time, isMute])
+      setMute();
+    }, [ref, link, canPlay, time, isMute]);
 
     return (
-        <audio id="audioPlayer" src={link} autoPlay onTimeUpdate={updateTime} onEnded={ended}></audio>
-    )
-})
+      <audio
+        id="audioPlayer"
+        src={link}
+        autoPlay
+        onTimeUpdate={updateTime}
+        onEnded={ended}
+      ></audio>
+    );
+  }
+);
 
-export default MusicPlayer
+export default MusicPlayer;

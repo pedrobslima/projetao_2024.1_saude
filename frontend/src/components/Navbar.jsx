@@ -1,17 +1,15 @@
-import './Navbar.css';
-import React, { useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faVolumeUp, faVolumeMute } from '@fortawesome/free-solid-svg-icons';
-import logo from '../assets/images/default_logo.png';
-import { MainContext } from './context/MainContext';
+import "./Navbar.css";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faVolumeUp, faVolumeMute } from "@fortawesome/free-solid-svg-icons";
+import logo from "../assets/images/logo_full.png";
 
 function Navbar({ pageTitle }) {
   const [isMuted, setIsMuted] = useState(false);
-  const [isMute, setIsMute] = useContext(MainContext).sound.mute
 
   const toggleMute = () => {
-    setIsMute(!isMute);
+    setIsMuted(!isMuted);
   };
 
   return (
@@ -33,12 +31,9 @@ function Navbar({ pageTitle }) {
             <Link to="/exercicio/pulso/1">Exercícios</Link>{" "}
             {/* link estático só para testes */}
           </li>
-          <li>
-            <Link to="/musica">Música</Link>
-          </li>
         </ul>
         <FontAwesomeIcon
-          icon={isMute ? faVolumeMute : faVolumeUp}
+          icon={isMuted ? faVolumeMute : faVolumeUp}
           onClick={toggleMute}
           className="volume-icon"
         />
