@@ -32,16 +32,15 @@ const Home = () => {
       case 2:
         return (
           <div>
-            <h2>Sobre Y</h2>
-            <p>Conteúdo para status 2.</p>
+            <h2>Title</h2>
+            <p>Placeholder</p>
           </div>
         );
       case 3:
       case 5:
         return (
           <div>
-            <h2>Sobre Z</h2>
-            <p>Conteúdo para status 3 e 5.</p>
+            <p>Que bom! Confira seu cronograma de hoje</p>
           </div>
         );
       default:
@@ -76,7 +75,7 @@ const Home = () => {
           totalTime={10}
         />
         <Settings />
-        <UnexpectedPain />
+        <UnexpectedPain onStatusClick={handleOpenModal} />
       </div>
       <ModalWindow show={showModal} onClose={handleCloseModal}>
         {getModalContent()}
