@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import styles from './MusicTherapyPage.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faPause, faRedoAlt } from '@fortawesome/free-solid-svg-icons';
@@ -7,31 +7,62 @@ import PlayerHeader from '../../shared/playerHeader/PlayerHeader';
 import PlayerControls from '../../shared/playerControls/PlayerControls';
 import Button from '../../shared/Button/Button';
 import PlayerDescription from '../../shared/playerDescription/PlayerDescription';
-import musics from "./musics.json"
 import { useParams } from 'react-router-dom';
-import { getParamId, changeUrl } from '../../../utils/utils';
-import { MainContext } from '../../Context/MainContext';
+import MusicPlayer from '../musicPlayer/MusicPlayer';
+import { getParamId, changeUrl, formatTime } from '../../../utils/utils';
+import musics from "./musics.json"
 
 
-function MusicPlayer({}) {
+function MusicTherapyPage({ref}) {
   // Constanttes:
   const baseUrl = "/musica"
+  const musicPlayerElementId = "musicPlayer"
   const noMusic = {
-    "Titulo": "",
-    "Artista": "",
-    "Genero": "",
-    "Link": ""
+      "Titulo": "",
+      "Artista": "",
+      "Genero": "",
+      "Link": ""
   }
+  const MusicPlayerRef = useRef(null)
 
   // Variaveis:
   const {playlistId, setPlaylistId, musicaId, setMusicId} = useParams()
-  const [currentMusicIndex, setcurrentMusicIndex] = useState(-1)
   const [playlist, setPlaylist] = useState([])
-  const [currentMusic, setCurrentMusic] = useState(noMusic)
-  const [isPlaying, setIsPlaying] = useState(true)
-  const [isMute, setIsMute] = useContext(MainContext).sound.mute
-
+  const [musicInfo, setMusicInfo] = useState(noMusic)
+  const [playIcon, setPlayIcon] = useState(true)
+  const [musicTime, setMusicTime] = useState("")
+  
   // Funcoes:
+  const handlePlayPause = () => {
+    if (MusicPlayerRef) {
+      MusicPlayerRef.PlayPauseMusic()
+      setPlayIcon(!playIcon)
+    }
+  }
+
+  const handleRestart = () => {
+    if (MusicPlayerRef) {
+      MusicPlayerRef.restartMusic()
+      setPlayIcon(true)
+    }
+  }
+
+  const nextMusic = () => {
+    let nextMusicIndex = getParamId(musicaId) + 1
+    if (nextMusicIndex >= playlist.length) {
+    nextMusicIndex = 0
+    }
+    changeUrl(`${baseUrl}/${getParamId(playlistId)}/${nextMusicIndex}`)
+  }
+
+  const previousMusic = () => {
+    let previousMusicIndex = getParamId(musicaId) -1
+    if (previousMusicIndex < 0) {
+    previousMusicIndex = playlist.length - 1
+    }
+    changeUrl(`${baseUrl}/${getParamId(playlistId)}/${previousMusicIndex}`)
+  }
+
   function getMusicInfo(playlist, index) {
     if (index >= 0 && index < playlist.length) {
       return playlist[index]
@@ -41,86 +72,48 @@ function MusicPlayer({}) {
     }
   }
 
-  const PlayPauseMusic = () => {
-    if (isPlaying){
-      pauseMusic()
+  const canPlayAudio = () => {
+    return getParamId(musicaId) >= 0 && getParamId(musicaId) < playlist.length
+  }
+
+  const formatMusicTime = (time) => {
+    if (isNaN(time)) {
+      setMusicTime("0:00")
     }
     else {
-      playMusic()
+      setMusicTime(formatTime(time))
     }
-  }
-
-  const playMusic = () => {
-    let audio = document.getElementById("audioPlayer")
-    if (audio && canPlayAudio()) {
-      audio.play()
-      setIsPlaying(true)
-    }
-  }
-  
-  const pauseMusic = () => {
-    let audio = document.getElementById("audioPlayer")
-    if (audio && canPlayAudio()) {
-      audio.pause()
-      setIsPlaying(false)
-    }
-  }
-
-  const restartMusic = () => {
-    let audio = document.getElementById("audioPlayer");
-    if (audio && canPlayAudio()) {
-      audio.currentTime = 0
-      audio.play()
-      setIsPlaying(true)
-    }
-  }
-
-  const nextMusic = () => {
-    let nextMusicIndex = currentMusicIndex + 1
-    if (nextMusicIndex >= playlist.length) {
-      nextMusicIndex = 0
-    }
-    changeUrl(`${baseUrl}/${getParamId(playlistId)}/${nextMusicIndex}`)
-  }
-
-  const previousMusic = () => {
-    let previousMusicIndex = currentMusicIndex -1
-    if (previousMusicIndex < 0) {
-      previousMusicIndex = playlist.length - 1
-    }
-    changeUrl(`${baseUrl}/${getParamId(playlistId)}/${previousMusicIndex}`)
-  }
-
-  const setMute = () => {
-    let audio = document.getElementById("audioPlayer");
-    if (audio && canPlayAudio()) {
-      audio.muted = isMute
-    }
-  }
-
-  const canPlayAudio = () => {
-    return currentMusicIndex >= 0 && currentMusicIndex < playlist.length
   }
 
   useEffect(() => {
-    setcurrentMusicIndex(getParamId(musicaId))
     setPlaylist(musics)
-    setCurrentMusic(getMusicInfo(playlist, currentMusicIndex))
-    setMute()
-  }, [currentMusicIndex, playlist, isMute])
+    setMusicInfo(getMusicInfo(playlist, getParamId(musicaId)))
+  }, [playlistId, musicaId, playlist, musicTime])
 
   return (
     <div className={styles.playerContainer}>
-      <audio id="audioPlayer" src={currentMusic.Link} autoPlay={true}></audio>
+      <MusicPlayer
+        ref={MusicPlayerRef}
+        link={musicInfo.Link}
+        canPlay={canPlayAudio()}
+        sendTime={formatMusicTime}
+        ended={nextMusic}
+      />
       <div className={styles.playerContainerDiv}>
-        <PlayerHeader title="Relaxe sua mente"/>
+        <PlayerHeader title="Relaxe sua mente" time={musicTime}/>
         <div className={styles.content}>
             <div className={styles.videoContainer}>
-              
+            <iframe
+              width="560"
+              height="300"
+              src="https://www.youtube.com/embed/UxhDlsH0cGU"
+              frameborder="0"
+              allowfullscreen
+            ></iframe>
             </div>
             <PlayerControls>
-              <Button onClick={PlayPauseMusic}><FontAwesomeIcon icon={isPlaying === true ? faPlay : faPause}/></Button>
-              <Button onClick={restartMusic}><FontAwesomeIcon icon={faRedoAlt}/></Button>
+              <Button onClick={handlePlayPause}><FontAwesomeIcon icon={playIcon === true ? faPause : faPlay}/></Button>
+              <Button onClick={handleRestart}><FontAwesomeIcon icon={faRedoAlt}/></Button>
               <Button onClick={nextMusic}>Proxima</Button>
               <Button onClick={previousMusic}>Anterior</Button>
             </PlayerControls>
@@ -128,7 +121,7 @@ function MusicPlayer({}) {
         <PlayerDescription>
           <p>
           Tocando agora: <br/>
-          {currentMusic.Titulo} - {currentMusic.Artista}
+          {musicInfo.Titulo} - {musicInfo.Artista}
           </p>
         </PlayerDescription>
       </div>
@@ -136,4 +129,4 @@ function MusicPlayer({}) {
   );
 }
 
-export default MusicPlayer
+export default MusicTherapyPage

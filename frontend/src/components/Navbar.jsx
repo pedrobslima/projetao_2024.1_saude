@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faVolumeUp, faVolumeMute } from '@fortawesome/free-solid-svg-icons';
 import logo from '../assets/images/default_logo.png';
-import { MainContext } from './Context/MainContext';
+import { MainContext } from './context/MainContext';
 
 function Navbar({ pageTitle }) {
   const [isMuted, setIsMuted] = useState(false);

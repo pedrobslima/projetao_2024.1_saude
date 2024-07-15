@@ -20,11 +20,13 @@
 .videoContainer {
   flex: 1;
   background-color: #d9d9d9;
-  height: 300px;
   border-radius: 8px;
   margin-right: 20px;
   max-width: 800px;
+  width: fit-content;
+  height: fit-content;
   aspect-ratio: 21 / 9;
+  justify-self: center;
 }
 
 

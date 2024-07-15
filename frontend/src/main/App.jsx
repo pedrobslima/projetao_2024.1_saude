@@ -1,7 +1,7 @@
 import './App.css'
 import React from 'react'
 import { BrowserRouter, useLocation } from 'react-router-dom'
-import { MainProvider } from '../components/Context/MainContext'
+import { MainProvider } from '../components/context/MainContext'
 
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
