@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useState } from "react";
 
-const MainContext = createContext({});
+export const MainContext = createContext({});
 
 export const MainProvider = ({ children }) => {
   const [isMute, setIsMute] = useState(false);
@@ -16,4 +16,4 @@ export const MainProvider = ({ children }) => {
   );
 };
 
-export default MainProvider;
+export default MainContext;

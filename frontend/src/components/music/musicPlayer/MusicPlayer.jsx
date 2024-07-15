@@ -6,7 +6,7 @@ import {
   forwardRef,
   useImperativeHandle,
 } from "react";
-import MainContext from "../../context/MainContext";
+import MainContext from "../../Context/MainContext";
 
 const MusicPlayer = forwardRef(
   ({ props, link, canPlay, sendTime, ended }, ref) => {

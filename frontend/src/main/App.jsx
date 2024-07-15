@@ -1,24 +1,24 @@
-import './App.css'
-import React from 'react'
-import { BrowserRouter, useLocation } from 'react-router-dom'
-import { MainProvider } from '../components/context/MainContext'
+import "./App.css";
+import React from "react";
+import { BrowserRouter, useLocation } from "react-router-dom";
+import { MainProvider } from "../components/Context/MainContext";
 
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
-import Routes from './Routes'
-import { getPageTitle } from '../utils/utils'
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import Routes from "./Routes";
+import { getPageTitle } from "../utils/utils";
 
 function App() {
   return (
     <BrowserRouter>
       <MainProvider>
-        <div className='app'>
+        <div className="app">
           <AppContent />
           <Footer />
         </div>
       </MainProvider>
     </BrowserRouter>
-  )
+  );
 }
 
 function AppContent() {
@@ -26,11 +26,11 @@ function AppContent() {
   return (
     <>
       <Navbar pageTitle={getPageTitle(location.pathname)} />
-      <div className='content'>
+      <div className="content">
         <Routes />
       </div>
     </>
   );
 }
 
-export default App
+export default App;

@@ -31,6 +31,9 @@ function Navbar({ pageTitle }) {
             <Link to="/exercicio/pulso/1">Exercícios</Link>{" "}
             {/* link estático só para testes */}
           </li>
+          <li>
+            <Link to="/musica">Música</Link>
+          </li>
         </ul>
         <FontAwesomeIcon
           icon={isMuted ? faVolumeMute : faVolumeUp}
