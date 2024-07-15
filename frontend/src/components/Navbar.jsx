@@ -1,15 +1,17 @@
 import './Navbar.css';
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faVolumeUp, faVolumeMute } from '@fortawesome/free-solid-svg-icons';
 import logo from '../assets/images/default_logo.png';
+import { MainContext } from './Context/MainContext';
 
 function Navbar({ pageTitle }) {
   const [isMuted, setIsMuted] = useState(false);
+  const [isMute, setIsMute] = useContext(MainContext).sound.mute
 
   const toggleMute = () => {
-    setIsMuted(!isMuted);
+    setIsMute(!isMute);
   };
 
   return (
@@ -35,7 +37,7 @@ function Navbar({ pageTitle }) {
           </li>
         </ul>
         <FontAwesomeIcon
-          icon={isMuted ? faVolumeMute : faVolumeUp}
+          icon={isMute ? faVolumeMute : faVolumeUp}
           onClick={toggleMute}
           className="volume-icon"
         />

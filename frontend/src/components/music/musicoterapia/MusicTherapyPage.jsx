@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styles from './MusicTherapyPage.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faPause, faRedoAlt } from '@fortawesome/free-solid-svg-icons';
@@ -10,6 +10,7 @@ import PlayerDescription from '../../shared/playerDescription/PlayerDescription'
 import musics from "./musics.json"
 import { useParams } from 'react-router-dom';
 import { getParamId, changeUrl } from '../../../utils/utils';
+import { MainContext } from '../../Context/MainContext';
 
 
 function MusicPlayer({}) {
@@ -28,6 +29,7 @@ function MusicPlayer({}) {
   const [playlist, setPlaylist] = useState([])
   const [currentMusic, setCurrentMusic] = useState(noMusic)
   const [isPlaying, setIsPlaying] = useState(true)
+  const [isMute, setIsMute] = useContext(MainContext).sound.mute
 
   // Funcoes:
   function getMusicInfo(playlist, index) {
@@ -89,6 +91,13 @@ function MusicPlayer({}) {
     changeUrl(`${baseUrl}/${getParamId(playlistId)}/${previousMusicIndex}`)
   }
 
+  const setMute = () => {
+    let audio = document.getElementById("audioPlayer");
+    if (audio && canPlayAudio()) {
+      audio.muted = isMute
+    }
+  }
+
   const canPlayAudio = () => {
     return currentMusicIndex >= 0 && currentMusicIndex < playlist.length
   }
@@ -97,7 +106,8 @@ function MusicPlayer({}) {
     setcurrentMusicIndex(getParamId(musicaId))
     setPlaylist(musics)
     setCurrentMusic(getMusicInfo(playlist, currentMusicIndex))
-  }, [currentMusicIndex, playlist])
+    setMute()
+  }, [currentMusicIndex, playlist, isMute])
 
   return (
     <div className={styles.playerContainer}>
