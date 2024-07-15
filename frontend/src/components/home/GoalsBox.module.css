@@ -24,6 +24,7 @@
   background-color: #d9d9d9;
   border-radius: 8px;
   width: 180px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2), 0px 3px 4px rgba(0, 0, 0, 0.3);
 }
 
 .icon {
