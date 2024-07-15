@@ -8,7 +8,7 @@ const Settings = () => {
   return (
     <div className={styles.settings}>
       <h3>Redefinir configurações</h3>
-      <button>
+      <button className={styles.settingsButton}>
         Atualizar Informações sobre você
         <FontAwesomeIcon icon={faPencil} />
       </button>

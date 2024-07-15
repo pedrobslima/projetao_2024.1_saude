@@ -28,6 +28,7 @@
   padding: 1rem 2rem;
   border-radius: 10px;
   margin-bottom: 0rem;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2), 0px 3px 4px rgba(0, 0, 0, 0.3);
 }
 
 .score {
@@ -63,19 +64,9 @@
   transition: background-color 0.3s;
   font-size: 1rem;
   cursor: pointer;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2), 0px 3px 4px rgba(0, 0, 0, 0.3);
 }
 
 .button:hover {
   background-color: #c0c0c0;
-}
-
-.iconHome::before,
-.iconRepeat::before,
-.iconUpdate::before {
-  content: "";
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  background-size: cover;
-  margin-right: 0.5rem;
 }

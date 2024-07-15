@@ -13,7 +13,7 @@ const BreakTimes = ({ title, breaks }) => {
             <p className={styles.nextSchedule}>Próximo horário:</p>
             <div>
               <p className={styles.nextScheduleTimer}>{breaks[0].time}</p>
-              <button>Desativar</button>
+              <button className={styles.deactiveButton}>Desativar</button>
             </div>
           </div>
           <div className={styles.remainingBreakItems}>
