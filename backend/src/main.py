@@ -1,8 +1,6 @@
 # fastapi dev backend/src/main.py
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from typing import Union
-import uvicorn
 
 import os
 import sys
