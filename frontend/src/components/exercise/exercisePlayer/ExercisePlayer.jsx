@@ -19,8 +19,11 @@ function ExercisePlayer({ type }) {
         <PlayerHeader title="Nome do Exercício" time={formatTime(timeLeft)} />
         <Player onTimeUpdate={handleTimeUpdate} />
         <div className={styles.description}>
-          <p>Descrição descrição</p>
-          <p>Descrição descrição</p>
+          <p>
+            <strong>Esse vídeo é apenas ilustrativo.</strong>
+            <br></br> Os exercícios serão adaptados para que sejam feitos sentados, sem necessidade de uso de muito
+            espaço.
+          </p>
         </div>
       </div>
     </div>
