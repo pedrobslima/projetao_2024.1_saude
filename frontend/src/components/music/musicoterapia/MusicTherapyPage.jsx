@@ -11,6 +11,7 @@ import { useParams } from 'react-router-dom';
 import MusicPlayer from '../musicPlayer/MusicPlayer';
 import { getParamId, changeUrl, formatTime } from '../../../utils/utils';
 import musics from "./musics.json"
+import { localContextGetInfo } from '../../context/localContext';
 
 
 function MusicTherapyPage({ref}) {
@@ -98,6 +99,7 @@ function MusicTherapyPage({ref}) {
         canPlay={canPlayAudio()}
         sendTime={formatMusicTime}
         ended={nextMusic}
+        isMuted={localContextGetInfo("music", "muted")}
       />
       <div className={styles.playerContainerDiv}>
         <PlayerHeader title="Relaxe sua mente" time={musicTime}/>

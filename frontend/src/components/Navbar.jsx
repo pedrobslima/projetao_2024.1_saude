@@ -1,19 +1,26 @@
 import "./Navbar.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faVolumeUp, faVolumeMute } from "@fortawesome/free-solid-svg-icons";
 import logo from "../assets/images/logo_full.png";
+import { localContextGetInfo, localContextUpdateInfo } from "./context/localContext";
 
 function Navbar({ pageTitle }) {
-  const [isMuted, setIsMuted] = useState(false);
+  const [isMuted, setIsMuted] = useState() 
 
   const toggleMute = () => {
-    setIsMuted(!isMuted);
+    localContextUpdateInfo("music", "muted", !isMuted)
+    setIsMuted(localContextGetInfo("music", "muted"))
   };
+
+  useEffect(() => {
+    setIsMuted(localContextGetInfo("music", "muted"))
+  }, [])
 
   return (
     <nav className="navbar">
+      {console.log(localContextGetInfo("music", "muted"))}
       <div className="navbar-left">
         <Link to="/">
           <img src={logo} alt="logo" className="navbar-logo" />
