@@ -6,13 +6,12 @@ import {
   forwardRef,
   useImperativeHandle,
 } from "react";
-import MainContext from "../../Context/MainContext";
 
 const MusicPlayer = forwardRef(
   ({ props, link, canPlay, sendTime, ended }, ref) => {
     // Variaveis:
     const [isPlaying, setIsPlaying] = useState(true);
-    const [isMute] = useContext(MainContext).sound.mute;
+    const [isMute, setIsMute] = useState(false)
     const [time, setTime] = useState(0);
 
     // Refs:

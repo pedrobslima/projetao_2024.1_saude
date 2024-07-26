@@ -1,7 +1,6 @@
 import "./App.css";
 import React from "react";
 import { BrowserRouter, useLocation } from "react-router-dom";
-import { MainProvider } from "../components/Context/MainContext";
 
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -11,12 +10,10 @@ import { getPageTitle } from "../utils/utils";
 function App() {
   return (
     <BrowserRouter>
-      <MainProvider>
-        <div className="app">
-          <AppContent />
-          <Footer />
-        </div>
-      </MainProvider>
+      <div className="app">
+        <AppContent />
+        <Footer />
+      </div>
     </BrowserRouter>
   );
 }
