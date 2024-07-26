@@ -2,15 +2,15 @@
   display: flex;
   margin: 20px;
   align-items: end;
-  gap: 10px;
+  gap: 12px;
 }
 
 .stylesList {
   display: flex;
   flex-direction: column;
-  border-radius: 10px;
-  background-color: #d9d9d9;
-  padding: 10px;
+  border-radius: 19.2px;
+  background-color: #a6cbcb;
+  padding: 12px 30px 12px 15px;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2), 0px 3px 4px rgba(0, 0, 0, 0.3);
 }
 

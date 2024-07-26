@@ -14,7 +14,7 @@
 .editButton {
   border-radius: 10px;
   padding: 10px;
-  background-color: #d9d9d9;
+  background-color: #7c9aab;
   transition: background-color 0.3s;
   border: none;
   cursor: pointer;
@@ -23,6 +23,7 @@
 
 .icon {
   height: 16px;
+  color: #fff;
 }
 
 .editButton:hover {

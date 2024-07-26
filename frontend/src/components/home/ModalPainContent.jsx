@@ -18,7 +18,7 @@ const ModalPainContent = () => {
     <div>
       {step === 1 ? (
         <div>
-          <h2>Onde?</h2>
+          <h2>Onde você está sentindo dores?</h2>
           <div className={styles.buttons}>
             <div>
               <p>Pulso</p>

@@ -7,29 +7,30 @@
 }
 
 .header {
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   font-size: 1.2em;
 }
 
 .goals {
   display: flex;
-  gap: 20px;
+  gap: 24px;
 }
 
 .goal {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px;
-  background-color: #d9d9d9;
-  border-radius: 8px;
-  width: 180px;
+  padding: 12px;
+  background-color: transparent;
+  border: 2px solid black;
+  border-radius: 19.2px;
+  width: 216px;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2), 0px 3px 4px rgba(0, 0, 0, 0.3);
 }
 
 .icon {
-  margin: 8px;
-  height: 80px;
+  margin: 9.6px;
+  height: 96px;
 }
 
 .text {

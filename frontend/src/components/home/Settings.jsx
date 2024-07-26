@@ -8,10 +8,10 @@ const Settings = () => {
   return (
     <div className={styles.settings}>
       <h3>Redefinir configurações</h3>
-      <button className={styles.settingsButton}>
-        Atualizar Informações sobre você
+      <div className={styles.settingsBox}>
+        <p>Atualizar Informações sobre você</p>
         <FontAwesomeIcon icon={faPencil} />
-      </button>
+      </div>
     </div>
   );
 };
