@@ -1,6 +1,6 @@
 // Inicia o local store com informações base.
 export const localContextStart = () => {
-    localStorage.setItem('notification', JSON.stringify({ first: true }))
+    localStorage.setItem('notification', JSON.stringify({ visible: true }))
     localStorage.setItem('music', JSON.stringify({ muted: false }))
 }
 

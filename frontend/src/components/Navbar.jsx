@@ -20,7 +20,6 @@ function Navbar({ pageTitle }) {
 
   return (
     <nav className="navbar">
-      {console.log(localContextGetInfo("music", "muted"))}
       <div className="navbar-left">
         <Link to="/">
           <img src={logo} alt="logo" className="navbar-logo" />
