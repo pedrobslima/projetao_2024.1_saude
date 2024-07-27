@@ -1,22 +1,25 @@
 import "./App.css";
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, useLocation } from "react-router-dom";
-import { MainProvider } from "../components/Context/MainContext";
 
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Routes from "./Routes";
 import { getPageTitle } from "../utils/utils";
+import { localContextStart } from "../components/context/localContext";
 
 function App() {
+
+  useEffect(() => {
+    localContextStart()
+  }, [])
+
   return (
     <BrowserRouter>
-      <MainProvider>
-        <div className="app">
-          <AppContent />
-          <Footer />
-        </div>
-      </MainProvider>
+      <div className="app">
+        <AppContent />
+        <Footer />
+      </div>
     </BrowserRouter>
   );
 }

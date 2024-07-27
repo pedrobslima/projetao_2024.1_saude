@@ -6,13 +6,11 @@ import {
   forwardRef,
   useImperativeHandle,
 } from "react";
-import MainContext from "../../Context/MainContext";
 
 const MusicPlayer = forwardRef(
-  ({ props, link, canPlay, sendTime, ended }, ref) => {
+  ({ props, link, canPlay, sendTime, ended, isMuted=false }, ref) => {
     // Variaveis:
     const [isPlaying, setIsPlaying] = useState(true);
-    const [isMute] = useContext(MainContext).sound.mute;
     const [time, setTime] = useState(0);
 
     // Refs:
@@ -53,7 +51,7 @@ const MusicPlayer = forwardRef(
     const setMute = () => {
       let audio = document.getElementById("audioPlayer");
       if (audio && canPlay) {
-        audio.muted = isMute;
+        audio.muted = isMuted;
       }
     };
 
@@ -74,7 +72,7 @@ const MusicPlayer = forwardRef(
 
     useEffect(() => {
       setMute();
-    }, [ref, link, canPlay, time, isMute]);
+    }, [ref, link, canPlay, time, isMuted]);
 
     return (
       <audio

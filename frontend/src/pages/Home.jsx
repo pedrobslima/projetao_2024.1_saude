@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Home.module.css";
 
 import GoalsBox from "../components/home/GoalsBox";
@@ -9,10 +9,16 @@ import UnexpectedPain from "../components/home/UnexpectedPain";
 import Settings from "../components/home/Settings";
 import ModalWindow from "../components/home/ModalWindow";
 import ModalPainContent from "../components/home/ModalPainContent";
+import ModalNotification from "../components/home/ModalNotification";
+import { localContextGetInfo, localContextUpdateInfo } from "../components/context/localContext";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [showModal, setShowModal] = useState(false);
   const [currentStatus, setCurrentStatus] = useState(null);
+  const [showNotification, setShowNotification] = useState()
+  const navigate = useNavigate();
+
 
   const handleOpenModal = (status) => {
     setCurrentStatus(status);
@@ -23,6 +29,20 @@ const Home = () => {
     setShowModal(false);
     setCurrentStatus(null);
   };
+
+  const toggleShowNotification = () => {
+    localContextUpdateInfo("notification", "visible", !showNotification)
+    setShowNotification(localContextGetInfo("notification", "visible"))
+  }
+
+  const handleNotificationStart = () => {
+    toggleShowNotification()
+    navigate("/exercicio/pulso/1")
+  }
+
+  const handleNotificationClose = () => {
+    toggleShowNotification()
+  }
 
   const getModalContent = () => {
     switch (currentStatus) {
@@ -47,6 +67,10 @@ const Home = () => {
         return null;
     }
   };
+
+  useEffect(() => {
+    setShowNotification(localContextGetInfo("notification", "visible"))
+  }, [])
 
   return (
     <div className={styles.home}>
@@ -80,6 +104,13 @@ const Home = () => {
       <ModalWindow show={showModal} onClose={handleCloseModal}>
         {getModalContent()}
       </ModalWindow>
+      <ModalNotification
+      show={showNotification}
+      name="Alongamento"
+      time="12h"
+      image="https://oxigenioacademia.com.br/wp-content/uploads/2016/12/alongamento-768x510.png"
+      onStart={handleNotificationStart}
+      onClose={handleNotificationClose}/>
     </div>
   );
 };
