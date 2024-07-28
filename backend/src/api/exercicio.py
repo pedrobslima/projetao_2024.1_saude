@@ -1,16 +1,45 @@
+from fastapi import status
+from fastapi.responses import RedirectResponse
 from api.utils import *
 #from backend.src.api.utils import *
 from db.server import server_
+from schemas import *
+from services import *
 
 router = APIRouter()
 
+@router.get("/{area}")
+async def main(area:str, user:str="dvd@cin.ufpe.br"):
+    response = ExerciseService().nextExercise(user)
+    if(response.status_code == 404):
+        return response
+    # Redirect to /docs (relative URL) http://127.0.0.1:8000/exercicio/pes
+    #return {'response': response.data}
+    return RedirectResponse(url=f"/exercicio/{area}/{response.data}", status_code=status.HTTP_302_FOUND)
+
 # ExerciseVideoPage
-@router.get("/{area}/{music_id}")
-async def musica_get(area: str, music_id: str):
-    info, mcontent, econtent = server_.getVideoExerciseLOCAL(music_id, '0')
-    return {'uau': 'exercicio', 'area': area, 'info': info}#, 'musica': str(mcontent), 'exercicio': str(econtent)}
+@router.get("/{area}/{exercise_id}")
+async def exercise_get(area: str, exercise_id: str):
+    response = ExerciseService().getExercise(exercise_id)
+    return response.data['info'] # response
 
 # ExerciseCompletePage /exercicio/:area/:id/completo
-@router.get("/{area}/{id}/completo")
-async def musica_get(area: str, id: str):
-    return {'uau': 'exercicio completo', 'area': area, 'id': id}
+@router.post("/{area}/{exercise_id}/completo", 
+            response_model=HttpResponseModel,
+            status_code=status.HTTP_200_OK,
+            description="Exercise done",
+            tags = ['exercise done'],
+            responses={
+                status.HTTP_200_OK:{
+                    "model": HttpResponseModel,
+                    "description": "Successfully created a new post"
+                },
+                status.HTTP_500_INTERNAL_SERVER_ERROR:{
+                    "model": HttpResponseModel,
+                    "description": "Error in creating post"
+                }
+            })
+async def exerciseDone(area: str, exercise_id: str)->HttpResponseModel:
+    post_response = ExerciseService.postExercise(exercise_id, "dvd@cin.ufpe.br")
+    return post_response
+    #return {'uau': 'exercicio completo', 'area': area, 'progress': f'{progress}/{goal}'}

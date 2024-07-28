@@ -3,7 +3,13 @@
         "cd@cin.ufpe.br": {
             "status_diario": "bom",
             "dor_inesperada": 0,
-            "meta_diaria": 5,
+            "meta_diaria": [
+                "0",
+                "1",
+                "2",
+                "3",
+                "4"
+            ],
             "progresso_diario": [
                 "0",
                 "1"
@@ -19,7 +25,13 @@
         "dvd@cin.ufpe.br": {
             "status_diario": "bom",
             "dor_inesperada": 0,
-            "meta_diaria": 5,
+            "meta_diaria": [
+                "0",
+                "1",
+                "2",
+                "3",
+                "5"
+            ],
             "progresso_diario": [
                 "0"
             ],
@@ -65,6 +77,22 @@
         },
         "1": {
             "categoria": "pescoco",
+            "video_id": "238946823"
+        },
+        "2": {
+            "categoria": "pes",
+            "video_id": "238946823"
+        },
+        "3": {
+            "categoria": "maos",
+            "video_id": "238946823"
+        },
+        "4": {
+            "categoria": "pescoco",
+            "video_id": "238946823"
+        },
+        "5": {
+            "categoria": "pernas",
             "video_id": "238946823"
         }
     }

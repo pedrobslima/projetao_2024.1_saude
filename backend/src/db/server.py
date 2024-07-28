@@ -29,7 +29,7 @@ class ServerClass():
         userInfo = self.getUserInfo(email)
         
         if(userInfo is not None):
-            userInfo = userInfo["meta_diaria"]==len(userInfo["progresso_diario"])
+            userInfo = len(userInfo["meta_diaria"])==len(userInfo["progresso_diario"])
 
         return userInfo
 
@@ -39,7 +39,17 @@ class ServerClass():
     def getVideoExercise(self, user:str=default):
         pass
 
-    def getVideoExerciseLOCAL(self, music_id:str, exercise_id:str):
+    def getLatestExerc(self, user:str=default) -> int|None:
+        done = self.checkProgress(user)
+        if(done is None):
+            return None
+        #elif(done == True):
+        #    return 0
+        user_info = self.getUserInfo(user)
+        latest = len(user_info['progresso_diario'])
+        return user_info['progresso_diario'][latest-1]
+
+    def getVideoExerciseLOCAL(self, music_id:str, exercise_id:str) -> dict|None:
         music_info = self.search('musicas', music_id)
         exercise_info = self.search('exercicios', exercise_id)
 
@@ -48,7 +58,7 @@ class ServerClass():
                 music_content = f.read()
             with open(f"backend/src/db/videos/{exercise_info['video_id']}.mp4", 'rb') as f:
                 exercise_content = f.read()
-            return (music_info, music_content, exercise_content)
+            return {'info': music_info, 'music': music_content, 'video': exercise_content}
         return None
 
     # EDIT:
@@ -62,12 +72,17 @@ class ServerClass():
         return False
 
 
-    def exerciseDone(self, exercise_id:str, user:str=default)->bool:
-        if(self.getUserInfo(user) is not None):
-            self.db['users'][user]['progresso_diario'].append(exercise_id)
-            self.__write()
-            return True
-        return False
+    def exerciseDone(self, exercise_id:str, user:str=default) -> int|None:
+        user_info = self.getUserInfo(user)
+        if(user_info is not None):
+            if(exercise_id not in user_info['progresso_diario']):
+                self.db['users'][user]['progresso_diario'].append(exercise_id)
+                self.__write()
+                user_info = self.db['users'][user]
+            progress = len(user_info['progresso_diario'])
+            goal = user_info['meta_diaria']
+            return (progress, goal)
+        return None
     
     #def editMusicGenres(self, input_info:list, user:str=default) -> bool:
     #    if(self.getUserInfo(user) is not None):
@@ -78,3 +93,4 @@ class ServerClass():
     #    pass
 
 server_ = ServerClass()
+#print(server_.getLatestExerc())
