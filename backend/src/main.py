@@ -1,7 +1,7 @@
 # fastapi dev backend/src/main.py
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from typing import Union
+from db.server import server_
 import uvicorn
 
 import os
@@ -31,7 +31,9 @@ app.add_middleware(
 # Home
 @app.get("/")
 async def read_root():
-    return {"Hello": "World"}
+    user_email = "dvd@cin.ufpe.br"
+    user_info = server_.getUserInfo(user_email)
+    return user_info
 
 # [TESTES] 
 app.include_router(items_router, prefix='/items', tags=['items'])

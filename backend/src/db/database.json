@@ -1,0 +1,99 @@
+{
+    "users": {
+        "cd@cin.ufpe.br": {
+            "status_diario": "bom",
+            "dor_inesperada": 0,
+            "meta_diaria": [
+                "0",
+                "1",
+                "2",
+                "3",
+                "4"
+            ],
+            "progresso_diario": [
+                "0",
+                "1"
+            ],
+            "estilos_musicais": [
+                "Jazz",
+                "Sons de Chuva"
+            ],
+            "pausa_relaxar": 19,
+            "tempo_escutado": 20,
+            "status_emocional": "?"
+        },
+        "dvd@cin.ufpe.br": {
+            "status_diario": "bom",
+            "dor_inesperada": 0,
+            "meta_diaria": [
+                "0",
+                "1",
+                "2",
+                "3",
+                "5"
+            ],
+            "progresso_diario": [
+                "0"
+            ],
+            "estilos_musicais": [
+                "Jazz",
+                "Sons de Chuva"
+            ],
+            "pausa_relaxar": 19,
+            "tempo_escutado": 20,
+            "status_emocional": "?"
+        }
+    },
+    "musicas": {
+        "0": {
+            "url": "<placeholder.com>",
+            "relax": 5,
+            "animacao": 2,
+            "genero": "Jazz",
+            "introspeccao": 3,
+            "duracao": 120
+        },
+        "1": {
+            "url": "<placeholder.com>",
+            "relax": 9,
+            "animacao": 1,
+            "genero": "Sons de Chuva",
+            "introspeccao": 8,
+            "duracao": 300
+        },
+        "8000": {
+            "url": "<placeholder.com>",
+            "relax": 1,
+            "animacao": 9,
+            "genero": "Soundtrack",
+            "introspeccao": 1,
+            "duracao": 347
+        }
+    },
+    "exercicios": {
+        "0": {
+            "categoria": "pulso",
+            "video_id": "8000"
+        },
+        "1": {
+            "categoria": "pescoco",
+            "video_id": "238946823"
+        },
+        "2": {
+            "categoria": "pes",
+            "video_id": "238946823"
+        },
+        "3": {
+            "categoria": "maos",
+            "video_id": "238946823"
+        },
+        "4": {
+            "categoria": "pescoco",
+            "video_id": "238946823"
+        },
+        "5": {
+            "categoria": "pernas",
+            "video_id": "238946823"
+        }
+    }
+}
