@@ -2,7 +2,6 @@ import React, { forwardRef, useImperativeHandle, useRef } from "react";
 import styles from "./VideoContainer.module.css";
 import { useEffect } from "react";
 
-// import video from "../assets/videos/exercise_video.mp4";
 import video from "../assets/videos/teste_vid.mp4";
 
 const VideoContainer = forwardRef((props, ref) => {
@@ -43,6 +42,9 @@ const VideoContainer = forwardRef((props, ref) => {
       if (props.onTimeUpdate && videoRef.current) {
         const timeLeft = ref.current.getTimeLeft();
         props.onTimeUpdate(timeLeft);
+        if (timeLeft === 0 && props.onVideoEnd) {
+          props.onVideoEnd();
+        }
       }
     }, 1000);
 
@@ -51,7 +53,7 @@ const VideoContainer = forwardRef((props, ref) => {
 
   return (
     <div className={styles.videoContainer}>
-      <video ref={videoRef} width="672" height="360" src={video} controls={false} autoPlay />
+      <video ref={videoRef} width="672" height="360" src={video} controls={false} autoPlay muted />
     </div>
   );
 });

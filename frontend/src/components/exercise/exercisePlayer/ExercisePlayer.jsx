@@ -16,7 +16,11 @@ function ExercisePlayer({ type }) {
   return (
     <div className={styles.player}>
       <div className={styles.playerContainer}>
-        <PlayerHeader title="Nome do Exercício" time={formatTime(timeLeft)} />
+        <PlayerHeader
+          title="Extensão e Flexão dos punhos com o cotovelo estendido"
+          time={formatTime(timeLeft)}
+          backgroundColor="#eed38f"
+        />
         <Player onTimeUpdate={handleTimeUpdate} />
         <div className={styles.description}>
           <p>

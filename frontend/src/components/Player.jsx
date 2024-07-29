@@ -13,7 +13,7 @@ const Player = ({ onTimeUpdate }) => {
 
   const [isPaused, setIsPaused] = useState(false);
 
-  const handleConcludedClick = (id) => {
+  const handleConcluded = (id) => {
     navigate("./completo");
   };
 
@@ -28,11 +28,7 @@ const Player = ({ onTimeUpdate }) => {
     <div>
       <div className={styles.content}>
         <div className={styles.videoContainer}>
-          <VideoContainer
-            ref={videoRef}
-            onTimeUpdate={onTimeUpdate}
-            type="exercicio"
-          />
+          <VideoContainer ref={videoRef} onTimeUpdate={onTimeUpdate} onVideoEnd={handleConcluded} type="exercicio" />
         </div>
         <div className={styles.controls}>
           <button className={styles.playButton} onClick={handlePlayPauseClick}>
@@ -42,10 +38,7 @@ const Player = ({ onTimeUpdate }) => {
             <FontAwesomeIcon icon={faRedoAlt} />
           </button>
           <button className={styles.skipButton}>Pular</button>
-          <button
-            className={styles.concludedButton}
-            onClick={() => handleConcludedClick()}
-          >
+          <button className={styles.concludedButton} onClick={() => handleConcluded()}>
             Concluido
           </button>
         </div>

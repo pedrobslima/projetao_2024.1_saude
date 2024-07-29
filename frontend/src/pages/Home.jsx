@@ -16,9 +16,8 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 const Home = () => {
   const [showModal, setShowModal] = useState(false);
   const [currentStatus, setCurrentStatus] = useState(null);
-  const [showNotification, setShowNotification] = useState()
+  const [showNotification, setShowNotification] = useState();
   const navigate = useNavigate();
-
 
   const handleOpenModal = (status) => {
     setCurrentStatus(status);
@@ -31,18 +30,18 @@ const Home = () => {
   };
 
   const toggleShowNotification = () => {
-    localContextUpdateInfo("notification", "visible", !showNotification)
-    setShowNotification(localContextGetInfo("notification", "visible"))
-  }
+    localContextUpdateInfo("notification", "visible", !showNotification);
+    setShowNotification(localContextGetInfo("notification", "visible"));
+  };
 
   const handleNotificationStart = () => {
-    toggleShowNotification()
-    navigate("/exercicio/pulso/1")
-  }
+    toggleShowNotification();
+    navigate("/exercicio/pulso/1");
+  };
 
   const handleNotificationClose = () => {
-    toggleShowNotification()
-  }
+    toggleShowNotification();
+  };
 
   const getModalContent = () => {
     switch (currentStatus) {
@@ -69,8 +68,8 @@ const Home = () => {
   };
 
   useEffect(() => {
-    setShowNotification(localContextGetInfo("notification", "visible"))
-  }, [])
+    setShowNotification(localContextGetInfo("notification", "visible"));
+  }, []);
 
   return (
     <div className={styles.home}>
@@ -78,26 +77,13 @@ const Home = () => {
         <FeelingStatus onStatusClick={handleOpenModal} />
         <BreakTimes
           title="Pausas para exercícios"
-          breaks={[
-            { time: "9h" },
-            { time: "11h" },
-            { time: "14h" },
-            { time: "16h" },
-          ]}
+          breaks={[{ time: "9h" }, { time: "11h" }, { time: "14h" }, { time: "16h" }]}
         />
-        <BreakTimes
-          title="Pausas para relaxar"
-          breaks={[{ time: "13h" }, { time: "17h" }]}
-        />
+        <BreakTimes title="Pausas para relaxar" breaks={[{ time: "13h" }, { time: "17h" }]} />
         <FavoriteMusicalGenres stylesList={["White Noise", "Lo-fi", "Jazz"]} />
       </div>
       <div>
-        <GoalsBox
-          exercisesCompleted={0}
-          totalExercises={4}
-          timeSpent={0}
-          totalTime={10}
-        />
+        <GoalsBox exercisesCompleted={0} totalExercises={4} timeSpent={0} totalTime={10} />
         <Settings />
         <UnexpectedPain onStatusClick={handleOpenModal} />
       </div>
@@ -105,12 +91,13 @@ const Home = () => {
         {getModalContent()}
       </ModalWindow>
       <ModalNotification
-      show={showNotification}
-      name="Alongamento"
-      time="12h"
-      image="https://oxigenioacademia.com.br/wp-content/uploads/2016/12/alongamento-768x510.png"
-      onStart={handleNotificationStart}
-      onClose={handleNotificationClose}/>
+        show={showNotification}
+        name="Alongamento"
+        time="12h"
+        image="https://oxigenioacademia.com.br/wp-content/uploads/2016/12/alongamento-768x510.png"
+        onStart={handleNotificationStart}
+        onClose={handleNotificationClose}
+      />
     </div>
   );
 };
