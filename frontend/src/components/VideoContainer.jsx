@@ -53,7 +53,7 @@ const VideoContainer = forwardRef((props, ref) => {
 
   return (
     <div className={styles.videoContainer}>
-      <video ref={videoRef} width="672" height="360" src={video} controls={false} autoPlay muted />
+      <video ref={videoRef} width="640" height="360" src={video} controls={false} autoPlay muted />
     </div>
   );
 });
