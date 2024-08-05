@@ -111,16 +111,16 @@ function MusicTherapyPage({ ref }) {
             ></iframe>
           </div>
           <PlayerControls>
-            <Button onClick={handlePlayPause} color="#99AAE7">
+            <Button onClick={handlePlayPause} color="#99AAE7" hover_color="#8695CB">
               <FontAwesomeIcon icon={playIcon === true ? faPause : faPlay} fontSize={30} />
             </Button>
-            <Button onClick={handleRestart} color="#A6CBCB">
+            <Button onClick={handleRestart} color="#A6CBCB" hover_color="#8FAFAF">
               <FontAwesomeIcon icon={faRedoAlt} fontSize={30} />
             </Button>
-            <Button onClick={nextMusic} color="#EED38F">
+            <Button onClick={nextMusic} color="#EED38F" hover_color="#D0B87D">
               Proxima
             </Button>
-            <Button onClick={previousMusic} color="#FFB774">
+            <Button onClick={previousMusic} color="#FFB774" hover_color="#E2A266">
               Anterior
             </Button>
           </PlayerControls>
