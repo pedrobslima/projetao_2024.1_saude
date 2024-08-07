@@ -49,21 +49,27 @@ class ExerciseService():
             )
 
 class MusicService():
-    
     @staticmethod
-    async def getPlaylist():
-        # placeholder
+    def getPlaylist(playlist_id:str, musicaId: Union[str, None]=None) -> HttpResponseModel:
+        response = db.getPlaylist(playlist_id)
+        if(response is None):
+            return HttpResponseModel(
+                message=HTTPResponses.ITEM_NOT_FOUND().message,
+                status_code=HTTPResponses.ITEM_NOT_FOUND().status_code,
+            )
+        response['musica'] = musicaId
         return HttpResponseModel(
-                message=HTTPResponses.BAD_REQUEST().message,
-                status_code=HTTPResponses.BAD_REQUEST(),
+                message=HTTPResponses.ITEM_FOUND().message,
+                status_code=HTTPResponses.ITEM_FOUND().status_code,
+                data=response
                 )
 
     @staticmethod
-    async def getMusic():
+    def getMusic():
         # placeholder
         return HttpResponseModel(
                 message=HTTPResponses.BAD_REQUEST().message,
-                status_code=HTTPResponses.BAD_REQUEST(),
+                status_code=HTTPResponses.BAD_REQUEST().status_code,
                 )
     
-#print(ExerciseService().nextExercise().data)
+#print(MusicService().getPlaylist('0000'))

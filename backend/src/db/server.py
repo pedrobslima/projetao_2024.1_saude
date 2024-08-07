@@ -17,13 +17,13 @@ class ServerClass():
             json.dump(self.db, database, indent=4)
 
     # GET:
-    def search(self, drc:str, item_id:str) -> dict|None:
+    def _search(self, drc:str, item_id:str) -> dict|None:
         if((drc in self.db.keys()) and (item_id in self.db[drc].keys())):
             return self.db[drc][item_id]
         return None
     
     def getUserInfo(self, email:str=default) -> dict|None:
-        return self.search('users', email)
+        return self._search('users', email)
     
     def checkProgress(self, email:str=default) -> bool|None:
         userInfo = self.getUserInfo(email)
@@ -32,6 +32,12 @@ class ServerClass():
             userInfo = len(userInfo["meta_diaria"])==len(userInfo["progresso_diario"])
 
         return userInfo
+
+    def getPlaylist(self, playId:str):
+        data = self._search("playlists", playId)
+        if(data is not None):
+            return {'playlist': data}
+            
 
     def getBestMusic(self, user:str=default):
         pass
@@ -50,8 +56,8 @@ class ServerClass():
         return user_info['progresso_diario'][latest-1]
 
     def getVideoExerciseLOCAL(self, music_id:str, exercise_id:str) -> dict|None:
-        music_info = self.search('musicas', music_id)
-        exercise_info = self.search('exercicios', exercise_id)
+        music_info = self._search('musicas', music_id)
+        exercise_info = self._search('exercicios', exercise_id)
 
         if((music_info is not None) and (exercise_info is not None)):
             with open(f"backend/src/db/musicas/{music_id}.mp3", 'rb') as f:
