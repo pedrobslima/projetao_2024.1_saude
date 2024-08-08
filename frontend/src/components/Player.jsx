@@ -6,6 +6,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faPause, faRedoAlt } from "@fortawesome/free-solid-svg-icons";
 
 import VideoContainer from "./VideoContainer";
+import ExerciseBackgroundAudio from "./ExerciseBackgroundAudio";
+import { localContextGetInfo } from "./context/localContext";
+
+const link =
+  "https://cms-artifacts.motionarray.com/content/motion-array/1163534/Thoughtful_mp3_1710983450.mp3?Expires=2026343758468&Key-Pair-Id=K2ZDLYDZI2R1DF&Signature=cjxkn8Cv5EGDjZj3jmKeFwQ68lZ82jWv5v2qeqvDP5rhCpqwebAdgsyYOxc4XbJJ0N8GCo8m~vAX7-h9WX1qYuq9Y~ctnQ8fwU-KlzUmZv-zrPvlxuynMR8jTsKwxaXGn9PUQxFUYVqTjFicRyoSbxpZMTGfKs0wV87Z4YbFZKN4Deen7zQ5b4SUV9oQ62Sr752BjIbQrHFWtfB08ZMnMcdtSkhL1-QeY6wjLtPHPkusYVB7xo4CUzTqmaOlgZ3aM~Au6HItl4TSeCZXp6UixcJCa7qE-HM92yoivyzR9-gKG9uu1D4MCheJJZokwUHmPXL3EyB9BtV9jfEhWKzALw__";
 
 const Player = ({ onTimeUpdate }) => {
   const navigate = useNavigate();
@@ -43,6 +48,7 @@ const Player = ({ onTimeUpdate }) => {
           </button>
         </div>
       </div>
+      <ExerciseBackgroundAudio src={link} isPaused={isPaused} isMuted={localContextGetInfo("music", "muted")} />
     </div>
   );
 };
