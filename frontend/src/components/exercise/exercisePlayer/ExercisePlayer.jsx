@@ -6,7 +6,7 @@ import Player from "../../Player";
 
 import { formatTime } from "../../../utils/utils";
 
-function ExercisePlayer({ type }) {
+function ExercisePlayer() {
   const [timeLeft, setTimeLeft] = useState(0);
 
   const handleTimeUpdate = (time) => {

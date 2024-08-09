@@ -2,11 +2,11 @@ import React from "react";
 import styles from "./ModalLetsMakeItBetter.module.css";
 import { useNavigate } from "react-router-dom";
 
-const ModalLetsMakeItBetter = () => {
+const ModalLetsMakeItBetter = ({ selectedArea }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate("/exercicio/pulso/1");
+    navigate(`/exercicio/${selectedArea}/1`);
   };
 
   return (
