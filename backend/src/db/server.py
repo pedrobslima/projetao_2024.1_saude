@@ -39,6 +39,13 @@ class ServerClass():
             return {'playlist': data}
             
 
+    def distance(self, category:dict, item:dict, user:str='dvd@cin.ufpe.br'):
+        musicas = self.db['musicas']
+        for idx, mus in musicas.items():
+            pass
+        pass
+
+
     def getBestMusic(self, user:str=default):
         pass
 
