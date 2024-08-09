@@ -71,53 +71,69 @@
         }
     },
     "playlists": {
-        "0000": [
-            "0", "1", "8000"
-        ],
-        "0001": [
-            "0", "1"
-        ],
-        "0002": [
-            "0", "8000"
-        ],
-        "0003": [
-            "1", "8000"
-        ],
-        "0004": [
-            "0"
-        ],
-        "0005": [
-            "1"
-        ],
-        "0006": [
-            "8000"
-        ],
-        "0007": []
+        "0000": {
+            "musicas": ["0", "1", "8000"],
+            "genero": "Jazz"
+        },
+        "0001": {
+            "musicas": ["0", "1"],
+            "genero": "Relax"
+        },
+        "0002": {
+            "musicas": ["0", "8000"],
+            "genero": "Jazz"
+        },
+        "0003": {
+            "musicas": ["1", "8000"],
+            "genero": "Instrumental"
+        },
+        "0004": {
+            "musicas": ["0"],
+            "genero": "Jazz"
+        },
+        "0005": {
+            "musicas": ["1"],
+            "genero": "Relax"
+        },
+        "0006": {
+            "musicas": ["8000"],
+            "genero": "Jazz"
+        },
+        "0007": {
+            "musicas": ["0", "1", "8000"],
+            "genero": "Jazz"
+        }
     },
     "exercicios": {
         "0": {
             "categoria": "pulso",
-            "video_id": "8000"
+            "video_id": "8000",
+            "duracao": 215
         },
         "1": {
             "categoria": "pescoco",
-            "video_id": "238946823"
+            "video_id": "238946823",
+            "duracao": 215
         },
         "2": {
             "categoria": "pes",
-            "video_id": "238946823"
+            "video_id": "238946823",
+            "duracao": 215
         },
         "3": {
             "categoria": "maos",
-            "video_id": "238946823"
+            "video_id": "238946823",
+            "duracao": 215
         },
         "4": {
             "categoria": "pescoco",
-            "video_id": "238946823"
+            "video_id": "238946823",
+            "duracao": 215
         },
         "5": {
             "categoria": "pernas",
-            "video_id": "238946823"
+            "video_id": "238946823",
+            "duracao": 215
         }
     }
 }

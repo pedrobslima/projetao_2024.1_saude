@@ -17,7 +17,7 @@ from api.exercicio import router as excercise_router
 app = FastAPI()
 
 origins = [
-    'http://localhost:3000' # Permite comunicação frontxend por esse endereço (e port)
+    'http://localhost:3000' # Permite comunicação frontxback por esse endereço (e port)
 ]
 
 app.add_middleware(
