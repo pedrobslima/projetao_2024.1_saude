@@ -19,6 +19,12 @@ const ExerciseBackgroundAudio = ({ src, isPaused, isMuted }) => {
     }
   }, [isMuted]);
 
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = 0.075;
+    }
+  }, []);
+
   return <audio ref={audioRef} src={src} loop />;
 };
 
