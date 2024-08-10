@@ -50,6 +50,20 @@ class ExerciseService():
 
 class MusicService():
     @staticmethod
+    def getMultPlays(user:str='dvd@cin.ufpe.br', limit:int=0):
+        response = db.getMultPlays(user, limit)
+        if response is None:
+            return HttpResponseModel(
+                message=HTTPResponses.SERVER_ERROR().message,
+                status_code=HTTPResponses.SERVER_ERROR().status_code,
+            )
+        return HttpResponseModel(
+                message=HTTPResponses.ITEM_FOUND().message,
+                status_code=HTTPResponses.ITEM_FOUND().status_code,
+                data=response
+                )
+
+    @staticmethod
     def getPlaylist(playlist_id:str, musicaId: Union[str, None]=None) -> HttpResponseModel:
         response = db.getPlaylist(playlist_id)
         if(response is None):

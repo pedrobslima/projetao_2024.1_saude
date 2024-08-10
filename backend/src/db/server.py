@@ -37,7 +37,22 @@ class ServerClass():
         data = self._search("playlists", playId)
         if(data is not None):
             return {'playlist': data}
-            
+        
+    def getMultPlays(self, user:str='dvd@cin.ufpe.br', limit:int=0):
+        user_info = self._search("users", user)
+        if(user_info is not None):
+            user_info = user_info['estilos_musicais']
+            idxpl = list(self.db['playlists'].keys())
+            if(limit == 0):
+                limit = len(idxpl)
+            playlists = {}
+            i = 0
+            while((len(playlists) < limit) & (i < len(idxpl))):
+                p_cand = self.db["playlists"][idxpl[i]]
+                if((p_cand['genero'] in user_info) | (len(user_info)==0)):
+                    playlists[idxpl[i]] = p_cand
+                i += 1
+            return playlists
 
     def distance(self, category:dict, item:dict, user:str='dvd@cin.ufpe.br'):
         musicas = self.db['musicas']
