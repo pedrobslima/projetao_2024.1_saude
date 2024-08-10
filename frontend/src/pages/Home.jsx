@@ -11,7 +11,6 @@ import ModalWindow from "../components/home/ModalWindow";
 import ModalPainContent from "../components/home/ModalPainContent";
 import ModalSadContent from "../components/home/ModalSadContent";
 import ModalNotification from "../components/home/ModalNotification";
-import { localContextGetInfo, localContextUpdateInfo } from "../components/context/localContext";
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {
@@ -31,8 +30,7 @@ const Home = () => {
   };
 
   const toggleShowNotification = () => {
-    localContextUpdateInfo("notification", "visible", !showNotification);
-    setShowNotification(localContextGetInfo("notification", "visible"));
+    setShowNotification(!showNotification);
   };
 
   const handleNotificationStart = () => {
@@ -64,7 +62,7 @@ const Home = () => {
   };
 
   useEffect(() => {
-    setShowNotification(localContextGetInfo("notification", "visible"));
+    setShowNotification(true);
   }, []);
 
   return (
