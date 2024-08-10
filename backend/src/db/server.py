@@ -37,7 +37,22 @@ class ServerClass():
         data = self._search("playlists", playId)
         if(data is not None):
             return {'playlist': data}
-            
+        
+    def getMultPlays(self, user:str='dvd@cin.ufpe.br', limit:int=0):
+        user_info = self._search("users", user)
+        if(user_info is not None):
+            user_info = user_info['estilos_musicais']
+            idxpl = list(self.db['playlists'].keys())
+            if(limit == 0):
+                limit = len(idxpl)
+            playlists = {}
+            i = 0
+            while((len(playlists) < limit) & (i < len(idxpl))):
+                p_cand = self.db["playlists"][idxpl[i]]
+                if((p_cand['genero'] in user_info) | (len(user_info)==0)):
+                    playlists[idxpl[i]] = p_cand
+                i += 1
+            return playlists
 
     def distance(self, category:dict, item:dict, user:str='dvd@cin.ufpe.br'):
         musicas = self.db['musicas']
@@ -52,6 +67,12 @@ class ServerClass():
     def getVideoExercise(self, user:str=default):
         pass
 
+    def getAreaExerc(self, area:str):
+        for exid, exerc in self.db['exercicios'].items():
+            if(exerc['categoria'] == area):
+                return {'exercicio': exerc, 'id': exid}
+        return {'exercicio': exerc, 'id': exid} # último exercicio, caso n ache nd
+
     def getLatestExerc(self, user:str=default) -> int|None:
         done = self.checkProgress(user)
         if(done is None):
@@ -60,7 +81,9 @@ class ServerClass():
         #    return 0
         user_info = self.getUserInfo(user)
         latest = len(user_info['progresso_diario'])
-        return user_info['progresso_diario'][latest-1]
+        exid = user_info['progresso_diario'][latest-1]
+        exercise = self.db['exercicios'][exid]
+        return {'exercicio': exercise, 'id': exid}
 
     def getVideoExerciseLOCAL(self, music_id:str, exercise_id:str) -> dict|None:
         music_info = self._search('musicas', music_id)
@@ -106,4 +129,4 @@ class ServerClass():
     #    pass
 
 server_ = ServerClass()
-#print(server_.getLatestExerc())
+#print(server_.getAreaExerc('pes'))
