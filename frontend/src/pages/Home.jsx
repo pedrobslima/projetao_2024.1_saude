@@ -9,9 +9,10 @@ import UnexpectedPain from "../components/home/UnexpectedPain";
 import Settings from "../components/home/Settings";
 import ModalWindow from "../components/home/ModalWindow";
 import ModalPainContent from "../components/home/ModalPainContent";
+import ModalSadContent from "../components/home/ModalSadContent";
 import ModalNotification from "../components/home/ModalNotification";
 import { localContextGetInfo, localContextUpdateInfo } from "../components/context/localContext";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [showModal, setShowModal] = useState(false);
@@ -49,12 +50,7 @@ const Home = () => {
       case 4:
         return <ModalPainContent />;
       case 2:
-        return (
-          <div>
-            <h2>Title</h2>
-            <p>Placeholder</p>
-          </div>
-        );
+        return <ModalSadContent onClose={handleCloseModal} />;
       case 3:
       case 5:
         return (
