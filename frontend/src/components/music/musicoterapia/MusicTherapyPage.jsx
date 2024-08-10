@@ -11,8 +11,7 @@ import { useParams } from "react-router-dom";
 import MusicPlayer from "../musicPlayer/MusicPlayer";
 import { getParamId, changeUrl, formatTime } from "../../../utils/utils";
 import musics from "./musics.json";
-import { localContextGetInfo } from "../../context/localContext";
-
+import { localContextGetInfo } from "../../context/localContext"
 import rio_arvore_floresta_video from "../../../assets/videos/rio_arvore_floresta.mp4"
 import caminho_caminhada_arvores_video from "../../../assets/videos/caminho_caminhada_arvores.mp4"
 import ondas_oceano_video from "../../../assets/videos/ondas_oceano.mp4"
