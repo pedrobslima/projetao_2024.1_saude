@@ -6,7 +6,7 @@ import FeelingStatusButton from "./FeelingStatusButton";
 const FeelingStatus = ({ onStatusClick }) => {
   return (
     <div className={styles.feelingStatus}>
-      <h1>Olá, user!</h1>
+      <h1>Olá, Ana!</h1>
       <p>Como você se sente?</p>
       <div className={styles.feelings}>
         <FeelingStatusButton status={1} onClick={() => onStatusClick(1)} />
