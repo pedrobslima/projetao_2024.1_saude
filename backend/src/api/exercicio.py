@@ -8,13 +8,22 @@ from services import *
 
 router = APIRouter()
 
-@router.get("/{area}")
-async def main(area:str, user:str="dvd@cin.ufpe.br"):
+@router.get('/')
+async def main(user:str="dvd@cin.ufpe.br"):
     response = ExerciseService().nextExercise(user)
     if(response.status_code == 404):
         return response
     # Redirect to /docs (relative URL) http://127.0.0.1:8000/exercicio/pes
     #return {'response': response.data}
+    return response.data
+
+@router.get("/{area}")
+async def main(area:str, user:str="dvd@cin.ufpe.br"):
+    response = ExerciseService().getAreaExerc(area)
+    if(response.status_code == 404):
+        return response
+    # Redirect to /docs (relative URL) http://127.0.0.1:8000/exercicio/pes
+    return response.data
     return RedirectResponse(url=f"/exercicio/{area}/{response.data}", status_code=status.HTTP_302_FOUND)
 
 # ExerciseVideoPage
