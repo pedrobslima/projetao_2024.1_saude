@@ -2,11 +2,14 @@ import React from "react";
 import styles from "./ExerciseCompletePage.module.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { faPencilAlt, faRedo, faHome, faMedal } from "@fortawesome/free-solid-svg-icons";
+
+import { getExerciseTitle } from "../../utils/utils";
 
 const ExerciseCompletePage = () => {
   const navigate = useNavigate();
+  const { area } = useParams();
 
   const handleMenuButtonClick = () => {
     navigate("/");
@@ -18,7 +21,7 @@ const ExerciseCompletePage = () => {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Extensão e Flexão dos punhos com o cotovelo estendido</h1>
+      <h1 className={styles.title}>{getExerciseTitle(area)}</h1>
       <p className={styles.subtitle}>Concluído!</p>
       <div className={styles.scoreContainer}>
         <FontAwesomeIcon icon={faMedal} className={styles.scoreIcon} />
