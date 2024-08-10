@@ -3,7 +3,7 @@
   flex-direction: column;
   padding: 10px;
   border-radius: 8px;
-  margin: 100px 10px 20px 10px;
+  margin: 133px 10px 20px 10px;
 }
 
 .header {
@@ -29,11 +29,11 @@
 }
 
 .icon {
-  margin: 9.6px;
-  height: 96px;
+  height: 116px;
 }
 
 .text {
+  margin-left: 8px;
   font-size: 2em;
   font-weight: bold;
 }

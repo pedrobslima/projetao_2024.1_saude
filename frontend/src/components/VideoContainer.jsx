@@ -1,11 +1,31 @@
-import React, { forwardRef, useImperativeHandle, useRef } from "react";
+import React, { forwardRef, useImperativeHandle, useRef, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import styles from "./VideoContainer.module.css";
-import { useEffect } from "react";
 
-import video from "../assets/videos/punho-sentado.mp4";
+import videoPunho from "../assets/videos/punho-sentado.mp4";
+import videoPescoco from "../assets/videos/pescoco-sentado.mp4";
+import videoOmbro from "../assets/videos/ombro-sentado.mp4";
 
 const VideoContainer = forwardRef((props, ref) => {
   const videoRef = useRef(null);
+
+  const { area } = useParams(); // Obtem o parâmetro `area` da URL
+
+  // Escolher o vídeo com base na área
+  let videoSrc;
+  switch (area) {
+    case "punho":
+      videoSrc = videoPunho;
+      break;
+    case "pescoco":
+      videoSrc = videoPescoco;
+      break;
+    case "ombro":
+      videoSrc = videoOmbro;
+      break;
+    default:
+      videoSrc = videoPunho;
+  }
 
   useImperativeHandle(ref, () => ({
     play: () => {
@@ -53,7 +73,7 @@ const VideoContainer = forwardRef((props, ref) => {
 
   return (
     <div className={styles.videoContainer}>
-      <video ref={videoRef} width="640" height="360" src={video} controls={false} autoPlay muted />
+      <video ref={videoRef} width="640" height="360" src={videoSrc} controls={false} autoPlay muted />
     </div>
   );
 });

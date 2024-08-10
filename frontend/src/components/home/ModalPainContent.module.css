@@ -9,8 +9,9 @@ h2 {
 
 .buttons {
   display: flex;
-  gap: 10px;
+  gap: 30px;
   flex-wrap: nowrap;
+  margin: 25px;
 }
 
 .buttons div {
