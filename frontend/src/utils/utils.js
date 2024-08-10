@@ -11,7 +11,7 @@ export const getPageTitle = (pathname) => {
 };
 
 export const getParamId = (paramId) => {
-  if (paramId == undefined || isNaN(+paramId)) {
+  if (paramId === undefined || isNaN(+paramId)) {
     return 0;
   } else {
     return +paramId; // + converte de string para numero.
