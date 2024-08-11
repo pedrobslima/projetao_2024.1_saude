@@ -1,4 +1,5 @@
 import "./App.css";
+import api from './api'
 import React, { useEffect } from "react";
 import { BrowserRouter, useLocation } from "react-router-dom";
 

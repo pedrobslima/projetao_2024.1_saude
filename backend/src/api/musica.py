@@ -9,6 +9,11 @@ from services import *
 router = APIRouter()
 
 # Musicoterapia
+@router.get("/")
+async def playlist_get():
+    response = MusicService().getMultPlays()
+    return response
+
 @router.get("/{playlistId}")
 async def playlist_get(playlistId: str):
     response = MusicService().getPlaylist(playlistId)
