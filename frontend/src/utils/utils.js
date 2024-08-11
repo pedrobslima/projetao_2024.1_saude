@@ -1,5 +1,5 @@
 export const getPageTitle = (pathname) => {
-  if (pathname === "/") {
+  if (pathname === "/home") {
     return "Menu Inicial";
   } else if (pathname.startsWith("/musica")) {
     return "Musicoterapia";

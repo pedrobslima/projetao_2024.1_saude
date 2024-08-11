@@ -8,7 +8,7 @@ const FormCompleteButton = ({ step }) => {
 
   const handleClick = () => {
     if (step === "1") navigate("/questionario/2");
-    else navigate("/");
+    else navigate("/home");
   };
 
   const getButtonText = () => {

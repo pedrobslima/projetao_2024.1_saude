@@ -12,7 +12,7 @@ const ExerciseCompletePage = () => {
   const { area } = useParams();
 
   const handleMenuButtonClick = () => {
-    navigate("/");
+    navigate("/home");
   };
 
   const handleRepeatButtonClick = () => {
