@@ -1,0 +1,12 @@
+.formHeaderContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.formHeader {
+  display: flex;
+  justify-content: space-between;
+  width: 1000px;
+  border-bottom: 1px solid gray;
+}

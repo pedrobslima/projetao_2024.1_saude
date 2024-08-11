@@ -1,0 +1,21 @@
+.formQuestionsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 30px; /* Espaçamento entre as perguntas */
+  margin: 20px 0;
+}
+
+.questionBlock {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 15px; /* Espaçamento entre o texto da pergunta e as opções */
+}
+
+.questionText {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  color: #333;
+  margin-bottom: 10px;
+}

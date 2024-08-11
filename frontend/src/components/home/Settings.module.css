@@ -11,7 +11,16 @@
   border-radius: 15px;
   background-color: #7c9aab;
   cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2), 0px 3px 4px rgba(0, 0, 0, 0.3);
+}
+
+.settingsBox:hover {
+  background-color: #67808e;
+}
+
+.settingsBox:active {
+  transform: scale(0.95);
 }
 
 .settings p {

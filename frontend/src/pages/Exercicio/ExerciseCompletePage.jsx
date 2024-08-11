@@ -19,6 +19,10 @@ const ExerciseCompletePage = () => {
     navigate(-1);
   };
 
+  const handleEditInfoButtonClick = () => {
+    navigate("/questionario/1");
+  };
+
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>{getExerciseTitle(area)}</h1>
@@ -37,7 +41,7 @@ const ExerciseCompletePage = () => {
           <FontAwesomeIcon icon={faRedo} />
           Repetir exercício
         </button>
-        <button className={styles.button}>
+        <button className={styles.button} onClick={() => handleEditInfoButtonClick()}>
           <FontAwesomeIcon icon={faPencilAlt} />
           Atualizar informações
         </button>
