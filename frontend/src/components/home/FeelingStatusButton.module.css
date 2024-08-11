@@ -32,6 +32,10 @@
   transform: scale(1.05);
 }
 
+.feelingButton:active {
+  transform: scale(0.95);
+}
+
 .faSadCry {
   background-color: #ffb774;
 }

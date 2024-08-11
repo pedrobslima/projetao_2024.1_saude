@@ -41,6 +41,10 @@
 .deactiveButton {
   color: #fff;
   border-radius: 16px;
+  height: 28px;
+  margin-top: 10px;
+  margin-left: 30px;
+  padding: 0px 12px;
   background-color: #5f5f5f;
   border: none;
   cursor: pointer;
