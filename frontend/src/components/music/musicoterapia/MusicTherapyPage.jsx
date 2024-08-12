@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import api from "../../../main/api"
 import styles from "./MusicTherapyPage.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faPause, faRedoAlt } from "@fortawesome/free-solid-svg-icons";
-import VideoContainer from "../../VideoContainer";
 import PlayerHeader from "../../shared/playerHeader/PlayerHeader";
 import PlayerControls from "../../shared/playerControls/PlayerControls";
 import Button from "../../shared/Button/Button";
@@ -113,12 +113,27 @@ function MusicTherapyPage({ ref }) {
   }, [])
 
   useEffect(() => {
-    setPlaylist(musics);
-    setMusicInfo(getMusicInfo(playlist, getParamId(musicaId)));
-  }, [playlistId, musicaId, playlist, musicTime]);
+    const fetchData = async () => {
+      if (playlistId){
+        try {
+          const fetchedPlaylist = await api.get(`/musica/${playlistId}/${musicaId}`)
+          setPlaylist(fetchedPlaylist["data"]["data"])
+        } catch (error) {
+            console.error('Error loading playlist:', error);
+        }
+      }
+    }
+    fetchData()
+    
+    //setMusicInfo(getMusicInfo(playlist, getParamId(musicaId)));
+  }, [playlistId, musicaId]);
+
+  useEffect(() => {
+  }, [musicTime])
 
   return (
     <div className={styles.playerContainer}>
+      {console.log(playlist)}
       <MusicPlayer
         ref={MusicPlayerRef}
         link={musicInfo.Link}

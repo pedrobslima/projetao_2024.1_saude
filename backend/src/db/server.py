@@ -36,7 +36,12 @@ class ServerClass():
     def getPlaylist(self, playId:str):
         data = self._search("playlists", playId)
         if(data is not None):
-            return {'playlist': data}
+            return data
+    
+    def getMusic(self, musicId:str):
+        data = self._search("musicas", musicId)
+        if(data is not None):
+            return data
         
     def getMultPlays(self, user:str='dvd@cin.ufpe.br', limit:int=0):
         user_info = self._search("users", user)

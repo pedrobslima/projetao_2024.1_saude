@@ -78,14 +78,18 @@ class MusicService():
                 )
 
     @staticmethod
-    def getPlaylist(playlist_id:str, musicaId: Union[str, None]=None) -> HttpResponseModel:
-        response = db.getPlaylist(playlist_id)
-        if(response is None):
+    def getPlaylist(playlist_id:str, musicaIndex: Union[str, None]=None) -> HttpResponseModel:
+        response = {}
+        response["playlist"] = db.getPlaylist(playlist_id)
+        if(response['playlist'] == None):
             return HttpResponseModel(
                 message=HTTPResponses.ITEM_NOT_FOUND().message,
                 status_code=HTTPResponses.ITEM_NOT_FOUND().status_code,
             )
-        response['musica'] = musicaId
+        if musicaIndex and musicaIndex.isdigit():
+            response['musica'] = db.getMusic(response["playlist"][int(musicaIndex)])
+        else:
+            response['musica'] = None
         return HttpResponseModel(
                 message=HTTPResponses.ITEM_FOUND().message,
                 status_code=HTTPResponses.ITEM_FOUND().status_code,
