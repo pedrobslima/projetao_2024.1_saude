@@ -86,7 +86,7 @@ class MusicService():
                 message=HTTPResponses.ITEM_NOT_FOUND().message,
                 status_code=HTTPResponses.ITEM_NOT_FOUND().status_code,
             )
-        if musicaIndex and musicaIndex.isdigit():
+        if musicaIndex and musicaIndex.isdigit() and int(musicaIndex) < len(response["playlist"]):
             response['musica'] = db.getMusic(response["playlist"][int(musicaIndex)])
         else:
             response['musica'] = None

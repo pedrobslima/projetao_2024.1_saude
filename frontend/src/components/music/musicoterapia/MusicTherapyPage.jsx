@@ -10,7 +10,6 @@ import PlayerDescription from "../../shared/playerDescription/PlayerDescription"
 import { useParams } from "react-router-dom";
 import MusicPlayer from "../musicPlayer/MusicPlayer";
 import { getParamId, changeUrl, formatTime } from "../../../utils/utils";
-import musics from "./musics.json";
 import { localContextGetInfo } from "../../context/localContext"
 import rio_arvore_floresta_video from "../../../assets/videos/rio_arvore_floresta.mp4"
 import caminho_caminhada_arvores_video from "../../../assets/videos/caminho_caminhada_arvores.mp4"
@@ -31,7 +30,7 @@ function MusicTherapyPage({ ref }) {
   const videos_lista = [rio_arvore_floresta_video, caminho_caminhada_arvores_video, ondas_oceano_video, tartaruga_tanque_video]
 
   // Variaveis:
-  const { playlistId, setPlaylistId, musicaId, setMusicId } = useParams();
+  const { playlistId, setPlaylistId, musicaId=0, setMusicId } = useParams();
   const [playlist, setPlaylist] = useState([]);
   const [musicInfo, setMusicInfo] = useState(noMusic);
   const [playIcon, setPlayIcon] = useState(true);
@@ -56,20 +55,20 @@ function MusicTherapyPage({ ref }) {
   };
 
   const nextMusic = () => {
-    let nextMusicIndex = getParamId(musicaId) + 1;
+    let nextMusicIndex = musicaId + 1
     if (nextMusicIndex >= playlist.length) {
-      nextMusicIndex = 0;
+      nextMusicIndex = 0
     }
-    changeUrl(`${baseUrl}/${getParamId(playlistId)}/${nextMusicIndex}`);
-  };
+    changeUrl(`${baseUrl}/${playlistId}/${nextMusicIndex}`)
+  }
 
   const previousMusic = () => {
-    let previousMusicIndex = getParamId(musicaId) - 1;
+    let previousMusicIndex = musicaId - 1
     if (previousMusicIndex < 0) {
-      previousMusicIndex = playlist.length - 1;
+      previousMusicIndex = playlist.length - 1
     }
-    changeUrl(`${baseUrl}/${getParamId(playlistId)}/${previousMusicIndex}`);
-  };
+    changeUrl(`${baseUrl}/${playlistId}/${previousMusicIndex}`)
+  }
 
   function getMusicInfo(playlist, index) {
     if (index >= 0 && index < playlist.length) {
@@ -116,8 +115,13 @@ function MusicTherapyPage({ ref }) {
     const fetchData = async () => {
       if (playlistId){
         try {
-          const fetchedPlaylist = await api.get(`/musica/${playlistId}/${musicaId}`)
-          setPlaylist(fetchedPlaylist["data"]["data"])
+          // Playlist:
+          var path = `/musica/${playlistId}/${musicaId}`
+          const fetchedData = await api.get(path)
+          setPlaylist(fetchedData["data"]["data"]["playlist"])
+          // Musica:
+          setMusicInfo(fetchedData["data"]["data"]["musica"])
+          
         } catch (error) {
             console.error('Error loading playlist:', error);
         }
@@ -134,6 +138,7 @@ function MusicTherapyPage({ ref }) {
   return (
     <div className={styles.playerContainer}>
       {console.log(playlist)}
+      {console.log(musicInfo)}
       <MusicPlayer
         ref={MusicPlayerRef}
         link={musicInfo.Link}
