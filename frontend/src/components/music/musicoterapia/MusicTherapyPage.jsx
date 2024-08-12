@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import api from "../../../main/api"
 import styles from "./MusicTherapyPage.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faPause, faRedoAlt } from "@fortawesome/free-solid-svg-icons";
-import VideoContainer from "../../VideoContainer";
 import PlayerHeader from "../../shared/playerHeader/PlayerHeader";
 import PlayerControls from "../../shared/playerControls/PlayerControls";
 import Button from "../../shared/Button/Button";
@@ -11,7 +11,11 @@ import { useParams } from "react-router-dom";
 import MusicPlayer from "../musicPlayer/MusicPlayer";
 import { getParamId, changeUrl, formatTime } from "../../../utils/utils";
 import musics from "./musics.json";
-import { localContextGetInfo } from "../../context/localContext";
+import { localContextGetInfo } from "../../context/localContext"
+import rio_arvore_floresta_video from "../../../assets/videos/rio_arvore_floresta.mp4"
+import caminho_caminhada_arvores_video from "../../../assets/videos/caminho_caminhada_arvores.mp4"
+import ondas_oceano_video from "../../../assets/videos/ondas_oceano.mp4"
+import tartaruga_tanque_video from "../../../assets/videos/tartaruga_tanque.mp4"
 
 function MusicTherapyPage({ ref }) {
   // Constanttes:
@@ -24,6 +28,7 @@ function MusicTherapyPage({ ref }) {
     Link: "",
   };
   const MusicPlayerRef = useRef(null);
+  const videos_lista = [rio_arvore_floresta_video, caminho_caminhada_arvores_video, ondas_oceano_video, tartaruga_tanque_video]
 
   // Variaveis:
   const { playlistId, setPlaylistId, musicaId, setMusicId } = useParams();
@@ -31,19 +36,22 @@ function MusicTherapyPage({ ref }) {
   const [musicInfo, setMusicInfo] = useState(noMusic);
   const [playIcon, setPlayIcon] = useState(true);
   const [musicTime, setMusicTime] = useState("");
+  const [selectedVideo, setSelectedVideo] = useState(0)
 
   // Funcoes:
   const handlePlayPause = () => {
     if (MusicPlayerRef) {
-      MusicPlayerRef.PlayPauseMusic();
-      setPlayIcon(!playIcon);
+      MusicPlayerRef.PlayPauseMusic()
+      setPlayIcon(!playIcon)
+      playPauseVideo(!playIcon)
     }
   };
 
   const handleRestart = () => {
     if (MusicPlayerRef) {
-      MusicPlayerRef.restartMusic();
-      setPlayIcon(true);
+      MusicPlayerRef.restartMusic()
+      setPlayIcon(true)
+      playPauseVideo(!playIcon)
     }
   };
 
@@ -83,13 +91,49 @@ function MusicTherapyPage({ ref }) {
     }
   };
 
+  const playPauseVideo = (value) => {
+    let video = document.getElementById("video_relaxante")
+    if (video) {
+      if (value == true) {
+        video.play()
+      }
+      else if (value == false) {
+        video.pause()
+      }
+    }
+  }
+
+  function getRandomVideoIndex(videos) {
+    var randomIndex = Math.floor(Math.random() * videos.length)
+    return randomIndex
+  }
+
   useEffect(() => {
-    setPlaylist(musics);
-    setMusicInfo(getMusicInfo(playlist, getParamId(musicaId)));
-  }, [playlistId, musicaId, playlist, musicTime]);
+    setSelectedVideo(getRandomVideoIndex(videos_lista))
+  }, [])
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (playlistId){
+        try {
+          const fetchedPlaylist = await api.get(`/musica/${playlistId}/${musicaId}`)
+          setPlaylist(fetchedPlaylist["data"]["data"])
+        } catch (error) {
+            console.error('Error loading playlist:', error);
+        }
+      }
+    }
+    fetchData()
+    
+    //setMusicInfo(getMusicInfo(playlist, getParamId(musicaId)));
+  }, [playlistId, musicaId]);
+
+  useEffect(() => {
+  }, [musicTime])
 
   return (
     <div className={styles.playerContainer}>
+      {console.log(playlist)}
       <MusicPlayer
         ref={MusicPlayerRef}
         link={musicInfo.Link}
@@ -102,13 +146,7 @@ function MusicTherapyPage({ ref }) {
         <PlayerHeader title="Relaxe sua mente" time={musicTime} backgroundColor="#99AAE7" />
         <div className={styles.content}>
           <div className={styles.videoContainer}>
-            <iframe
-              width="640"
-              height="360"
-              src="https://www.youtube.com/embed/UxhDlsH0cGU"
-              frameborder="0"
-              allowfullscreen
-            ></iframe>
+          <video id="video_relaxante" width="640" height="360" src={videos_lista[selectedVideo]} autoPlay muted loop />
           </div>
           <PlayerControls>
             <Button onClick={handlePlayPause} color="#99AAE7" hover_color="#8695CB">

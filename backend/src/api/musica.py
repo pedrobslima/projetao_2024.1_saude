@@ -20,7 +20,7 @@ async def playlist_get(playlistId: str):
     return response
 
 
-@router.get("/{playlistId}/{musicaId}")
-async def musica_get(playlistId: str, musicaId: Union[str, None]=None):
-    response = MusicService().getPlaylist(playlistId, musicaId)
+@router.get("/{playlistId}/{musicaIndex}")
+async def musica_get(playlistId: str, musicaIndex: Union[str, None]=None):
+    response = MusicService().getPlaylist(playlistId, musicaIndex)
     return response
