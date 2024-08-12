@@ -7,21 +7,21 @@ import logo from "../assets/images/logo_full.png";
 import { localContextGetInfo, localContextUpdateInfo } from "./context/localContext";
 
 function Navbar({ pageTitle }) {
-  const [isMuted, setIsMuted] = useState() 
+  const [isMuted, setIsMuted] = useState();
 
   const toggleMute = () => {
-    localContextUpdateInfo("music", "muted", !isMuted)
-    setIsMuted(localContextGetInfo("music", "muted"))
+    localContextUpdateInfo("music", "muted", !isMuted);
+    setIsMuted(localContextGetInfo("music", "muted"));
   };
 
   useEffect(() => {
-    setIsMuted(localContextGetInfo("music", "muted"))
-  }, [])
+    setIsMuted(localContextGetInfo("music", "muted"));
+  }, []);
 
   return (
     <nav className="navbar">
       <div className="navbar-left">
-        <Link to="/">
+        <Link to="/home">
           <img src={logo} alt="logo" className="navbar-logo" />
         </Link>
       </div>
@@ -31,21 +31,16 @@ function Navbar({ pageTitle }) {
       <div className="navbar-right">
         <ul>
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/home">Home</Link>
           </li>
           <li>
-            <Link to="/exercicio/pulso/1">Exercícios</Link>{" "}
-            {/* link estático só para testes */}
+            <Link to="/exercicio/pulso/1">Exercícios</Link> {/* link estático só para testes */}
           </li>
           <li>
             <Link to="/musica">Música</Link>
           </li>
         </ul>
-        <FontAwesomeIcon
-          icon={isMuted ? faVolumeMute : faVolumeUp}
-          onClick={toggleMute}
-          className="volume-icon"
-        />
+        <FontAwesomeIcon icon={isMuted ? faVolumeMute : faVolumeUp} onClick={toggleMute} className="volume-icon" />
       </div>
     </nav>
   );

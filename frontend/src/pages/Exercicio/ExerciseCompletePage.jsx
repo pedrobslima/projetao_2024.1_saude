@@ -12,11 +12,15 @@ const ExerciseCompletePage = () => {
   const { area } = useParams();
 
   const handleMenuButtonClick = () => {
-    navigate("/");
+    navigate("/home");
   };
 
   const handleRepeatButtonClick = () => {
     navigate(-1);
+  };
+
+  const handleEditInfoButtonClick = () => {
+    navigate("/questionario/1");
   };
 
   return (
@@ -37,7 +41,7 @@ const ExerciseCompletePage = () => {
           <FontAwesomeIcon icon={faRedo} />
           Repetir exercício
         </button>
-        <button className={styles.button}>
+        <button className={styles.button} onClick={() => handleEditInfoButtonClick()}>
           <FontAwesomeIcon icon={faPencilAlt} />
           Atualizar informações
         </button>

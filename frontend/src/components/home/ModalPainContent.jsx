@@ -5,7 +5,7 @@ import ModalLetsMakeItBetter from "./ModalLetsMakeItBetter";
 
 import pulso from "../../assets/images/pulso.png";
 import pescoco from "../../assets/images/pescoco.png";
-import ombro from "../../assets/images/ombro.svg";
+import ombro from "../../assets/images/ombro.png";
 
 const ModalPainContent = () => {
   const [step, setStep] = useState(1);
