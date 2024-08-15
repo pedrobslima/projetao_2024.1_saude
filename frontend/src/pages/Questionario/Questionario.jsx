@@ -27,8 +27,8 @@ const Questionario = () => {
       question: "Selecione os Locais que sente dor ou desconforto",
       options: [
         { text: "Punho", imgSrc: pulso },
-        { text: "Lombar", imgSrc: pescoco },
-        { text: "Pescoço", imgSrc: ombro },
+        { text: "Pescoço", imgSrc: pescoco },
+        { text: "Ombro", imgSrc: ombro },
         { text: "Nenhum", imgSrc: smile },
       ],
       multi: true,
