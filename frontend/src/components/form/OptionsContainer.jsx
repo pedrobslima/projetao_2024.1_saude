@@ -1,24 +1,33 @@
 import React, { useState } from "react";
 import styles from "./OptionsContainer.module.css";
 
-const OptionsContainer = ({ options, multi }) => {
+const OptionsContainer = ({ options, multi, apiCall }) => {
   const [selectedOptions, setSelectedOptions] = useState([]);
 
   const handleOptionClick = (option) => {
+    let updatedSelectedOptions;
+
     if (multi) {
       if (["Nenhum", "Outro", "Não"].includes(option.text)) {
-        setSelectedOptions([option]);
+        updatedSelectedOptions = [option];
       } else {
         if (selectedOptions.some((selected) => selected.text === option.text)) {
-          setSelectedOptions(selectedOptions.filter((selected) => selected.text !== option.text));
+          updatedSelectedOptions = selectedOptions.filter((selected) => selected.text !== option.text);
         } else {
-          setSelectedOptions((prev) =>
-            prev.filter((selected) => !["Nenhum", "Outro", "Não"].includes(selected.text)).concat(option)
-          );
+          updatedSelectedOptions = [
+            ...selectedOptions.filter((selected) => !["Nenhum", "Outro", "Não"].includes(selected.text)),
+            option,
+          ];
         }
       }
     } else {
-      setSelectedOptions([option]);
+      updatedSelectedOptions = [option];
+    }
+
+    setSelectedOptions(updatedSelectedOptions);
+
+    if (apiCall) {
+      apiCall(updatedSelectedOptions.map((opt) => opt.text));
     }
   };
 

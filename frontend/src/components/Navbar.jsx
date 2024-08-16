@@ -5,9 +5,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faVolumeUp, faVolumeMute } from "@fortawesome/free-solid-svg-icons";
 import logo from "../assets/images/logo_full.png";
 import { localContextGetInfo, localContextUpdateInfo } from "./context/localContext";
+import { fetchUserArea } from "../utils/utils";
 
 function Navbar({ pageTitle }) {
   const [isMuted, setIsMuted] = useState();
+  const [selectedArea, setSelectedArea] = useState(null);
 
   const toggleMute = () => {
     localContextUpdateInfo("music", "muted", !isMuted);
@@ -16,6 +18,10 @@ function Navbar({ pageTitle }) {
 
   useEffect(() => {
     setIsMuted(localContextGetInfo("music", "muted"));
+  }, []);
+
+  useEffect(() => {
+    fetchUserArea(setSelectedArea);
   }, []);
 
   return (
@@ -34,7 +40,11 @@ function Navbar({ pageTitle }) {
             <Link to="/home">Home</Link>
           </li>
           <li>
-            <Link to="/exercicio/pulso/1">Exercícios</Link> {/* link estático só para testes */}
+            {selectedArea ? (
+              <Link to={`/exercicio/${selectedArea}/1`}>Exercícios</Link>
+            ) : (
+              <Link to={`/exercicio/pulso/1`}>Exercícios</Link>
+            )}
           </li>
           <li>
             <Link to="/musica">Música</Link>

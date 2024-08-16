@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import FormContent from "../../components/form/FormContent";
@@ -13,8 +13,17 @@ import {
   analisar_planilhas,
 } from "../../assets/images";
 
+import { updateUserAreas } from "../../utils/utils";
+
 const Questionario = () => {
   const { step } = useParams();
+  const [selectedAreas, setSelectedAreas] = useState([]);
+
+  useEffect(() => {
+    if (selectedAreas.length > 0) {
+      updateUserAreas(selectedAreas);
+    }
+  }, [selectedAreas]);
 
   // Definindo as perguntas para cada step
   const perguntasStep1 = [
@@ -32,6 +41,7 @@ const Questionario = () => {
         { text: "Nenhum", imgSrc: smile },
       ],
       multi: true,
+      apiCall: setSelectedAreas,
     },
     {
       question: "Qual a intensidade dessa dor?",
