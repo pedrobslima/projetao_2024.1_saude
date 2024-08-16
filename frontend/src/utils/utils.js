@@ -3,12 +3,12 @@ import api from "../main/api";
 export const fetchUserArea = async (setSelectedArea) => {
   console.log("FETCH");
   try {
-    // Fetching the areas_corpo_exercicios from the backend for user "dvd@cin.ufpe.br"
+    // Requsição
     const response = await api.get(`/exercicio/user-areas`);
     const areas = response.data.areas_corpo_exercicios;
     console.log(areas);
     if (areas && areas.length > 0) {
-      // Select a random area if there are multiple
+      // escolhe uma área aleatória se tiver multiplas
       const randomArea = areas[Math.floor(Math.random() * areas.length)];
       setSelectedArea(randomArea);
       console.log(randomArea);
@@ -21,8 +21,14 @@ export const fetchUserArea = async (setSelectedArea) => {
 export const updateUserAreas = async (selectedAreas) => {
   // Log para mostrar as areas recebidas
   console.log(selectedAreas);
+  selectedAreas.map(
+    (item) =>
+      item
+        .toLowerCase() // Converte todas as letras para minúsculas
+        .replace(/ç/g, "c") // Substitui 'ç' por 'c' => [pescoco, ombro, punho...]
+  );
   try {
-    // Fazendo a requisição para atualizar as áreas do corpo
+    // Requisição
     const response = await api.post(`/form/update-areas`, selectedAreas);
 
     // Log para mostrar sucesso ou falha
