@@ -128,8 +128,6 @@ function MusicTherapyPage({ ref }) {
       }
     }
     fetchData()
-    
-    //setMusicInfo(getMusicInfo(playlist, getParamId(musicaId)));
   }, [playlistId, musicaId]);
 
   useEffect(() => {
@@ -137,8 +135,6 @@ function MusicTherapyPage({ ref }) {
 
   return (
     <div className={styles.playerContainer}>
-      {console.log(playlist)}
-      {console.log(musicInfo)}
       <MusicPlayer
         ref={MusicPlayerRef}
         link={musicInfo.Link}
