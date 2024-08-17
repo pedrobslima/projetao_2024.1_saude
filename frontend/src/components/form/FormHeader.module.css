@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-size: 1.2rem;
 }
 
 .formHeader {
@@ -9,4 +10,9 @@
   justify-content: space-between;
   width: 1000px;
   border-bottom: 1px solid gray;
+}
+
+.progress {
+  display: flex;
+  align-items: center;
 }

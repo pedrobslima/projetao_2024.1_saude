@@ -1,29 +1,33 @@
 import React, { useState } from "react";
 import styles from "./OptionsContainer.module.css";
 
-const OptionsContainer = ({ options, multi }) => {
+const OptionsContainer = ({ options, multi, apiCall }) => {
   const [selectedOptions, setSelectedOptions] = useState([]);
 
   const handleOptionClick = (option) => {
+    let updatedSelectedOptions;
+
     if (multi) {
-      if (option === "Nenhum" || option === "Outro" || option === "Não") {
-        // Se "Nenhum", "Outro", ou "Não" for clicado, desmarque todas as outras opções
-        setSelectedOptions([option]);
+      if (["Nenhum", "Outro", "Não"].includes(option.text)) {
+        updatedSelectedOptions = [option];
       } else {
-        // Se a opção já está selecionada, desmarque-a
-        if (selectedOptions.includes(option)) {
-          setSelectedOptions(selectedOptions.filter((selected) => selected !== option));
+        if (selectedOptions.some((selected) => selected.text === option.text)) {
+          updatedSelectedOptions = selectedOptions.filter((selected) => selected.text !== option.text);
         } else {
-          // Caso contrário, adicione a nova opção e desmarque "Nenhum", "Outro", ou "Não" se estiverem selecionados
-          setSelectedOptions((prev) =>
-            prev
-              .filter((selected) => selected !== "Nenhum" && selected !== "Outro" && selected !== "Não")
-              .concat(option)
-          );
+          updatedSelectedOptions = [
+            ...selectedOptions.filter((selected) => !["Nenhum", "Outro", "Não"].includes(selected.text)),
+            option,
+          ];
         }
       }
     } else {
-      setSelectedOptions([option]);
+      updatedSelectedOptions = [option];
+    }
+
+    setSelectedOptions(updatedSelectedOptions);
+
+    if (apiCall) {
+      apiCall(updatedSelectedOptions.map((opt) => opt.text));
     }
   };
 
@@ -31,11 +35,14 @@ const OptionsContainer = ({ options, multi }) => {
     <div className={styles.optionsContainer}>
       {options.map((option) => (
         <button
-          key={option}
-          className={`${styles.optionButton} ${selectedOptions.includes(option) ? styles.selected : ""}`}
+          key={option.text}
+          className={`${styles.optionButton} ${
+            selectedOptions.some((selected) => selected.text === option.text) ? styles.selected : ""
+          }`}
           onClick={() => handleOptionClick(option)}
         >
-          {option}
+          {option.text}
+          {option.imgSrc && <img src={option.imgSrc} alt={option.text} className={styles.optionImage} />}
         </button>
       ))}
     </div>

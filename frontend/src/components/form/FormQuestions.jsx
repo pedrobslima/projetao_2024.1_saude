@@ -9,7 +9,7 @@ const FormQuestions = ({ questions }) => {
       {questions.map((questionObj, index) => (
         <div key={index} className={styles.questionBlock}>
           <h3 className={styles.questionText}>{questionObj.question}</h3>
-          <OptionsContainer options={questionObj.options} multi={questionObj.multi} />
+          <OptionsContainer options={questionObj.options} multi={questionObj.multi} apiCall={questionObj.apiCall} />
         </div>
       ))}
     </div>

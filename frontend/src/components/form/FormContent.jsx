@@ -9,7 +9,7 @@ const FormContent = ({ step, questions }) => {
   return (
     <div>
       <FormTitle name={"Ana"} />
-      <FormHeader answers={step * 4} />
+      <FormHeader step={step * 4} />
       <FormQuestions questions={questions} />
       <FormCompleteButton step={step} />
     </div>
