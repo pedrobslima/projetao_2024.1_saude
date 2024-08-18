@@ -81,7 +81,7 @@ const Home = () => {
         <FavoriteMusicalGenres stylesList={["White Noise", "Lo-fi", "Jazz"]} />
       </div>
       <div>
-        <GoalsBox exercisesCompleted={0} totalExercises={4} timeSpent={0} totalTime={10} />
+        <GoalsBox exercisesCompleted={1} totalExercises={5} timeSpent={0} totalTime={10} />
         <Settings />
         <UnexpectedPain onStatusClick={handleOpenModal} />
       </div>
@@ -90,7 +90,7 @@ const Home = () => {
       </ModalWindow>
       <ModalNotification
         show={showNotification}
-        name="Alongamento"
+        name="Hora de se Exercitar"
         time="12h"
         image="https://oxigenioacademia.com.br/wp-content/uploads/2016/12/alongamento-768x510.png"
         onStart={handleNotificationStart}

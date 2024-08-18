@@ -4,7 +4,7 @@ import styles from "./GoalsBox.module.css";
 import target from "../../assets/images/target.png";
 import timer from "../../assets/images/timer.png";
 
-const GoalsBox = ({ exercisesCompleted = 0, totalExercises = 4, timeSpent = 0, totalTime = 10 }) => {
+const GoalsBox = ({ exercisesCompleted = 1, totalExercises = 5, timeSpent = 0, totalTime = 10 }) => {
   return (
     <div className={styles.goalsContainer}>
       <h3 className={styles.header}>Meta de exercícios</h3>

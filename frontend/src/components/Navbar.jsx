@@ -39,13 +39,13 @@ function Navbar({ pageTitle }) {
           <li>
             <Link to="/home">Home</Link>
           </li>
-          <li>
+          {/* <li>
             {selectedArea ? (
               <Link to={`/exercicio/${selectedArea}/1`}>Exercícios</Link>
             ) : (
               <Link to={`/exercicio/pulso/1`}>Exercícios</Link>
             )}
-          </li>
+          </li> */}
           <li>
             <Link to="/musica">Música</Link>
           </li>
