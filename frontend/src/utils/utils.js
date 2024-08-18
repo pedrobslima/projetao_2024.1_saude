@@ -7,12 +7,13 @@ export const fetchUserArea = async (setSelectedArea) => {
     const response = await api.get(`/exercicio/user-areas`);
     const areas = response.data.data; //.areas_corpo_exercicios;
     console.log(areas);
+    let area = areas[0];
     if (areas && areas.length > 0) {
       // escolhe uma área aleatória se tiver multiplas
-      const randomArea = areas[Math.floor(Math.random() * areas.length)];
-      setSelectedArea(randomArea);
-      console.log(randomArea);
+      area = areas[Math.floor(Math.random() * areas.length)];
     }
+    console.log(area);
+    setSelectedArea(area);
   } catch (error) {
     console.error("Error fetching user area:", error);
   }
