@@ -20,7 +20,8 @@
             ],
             "pausa_relaxar": 19,
             "tempo_escutado": 20,
-            "status_emocional": "?"
+            "status_emocional": "?",
+            "areas": []
         },
         "dvd@cin.ufpe.br": {
             "status_diario": "bom",
@@ -41,7 +42,12 @@
             ],
             "pausa_relaxar": 19,
             "tempo_escutado": 20,
-            "status_emocional": "?"
+            "status_emocional": "?",
+            "areas": [
+                "ombro",
+                "pulso",
+                "pescoco"
+            ]
         }
     },
     "musicas": {
@@ -175,5 +181,13 @@
             "video_id": "238946823",
             "duracao": 215
         }
-    }
+    },
+    "areas": [
+        "pulso",
+        "pescoco",
+        "pes",
+        "maos",
+        "pernas",
+        "ombro"
+    ]
 }
