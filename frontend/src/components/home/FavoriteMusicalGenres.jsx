@@ -16,9 +16,6 @@ const FavoriteMusicalGenres = ({ stylesList }) => {
           ))}
         </div>
       </div>
-      <div>
-        <EditButton list="Estilos" />
-      </div>
     </div>
   );
 };

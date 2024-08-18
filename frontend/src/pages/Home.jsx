@@ -13,10 +13,13 @@ import ModalSadContent from "../components/home/ModalSadContent";
 import ModalNotification from "../components/home/ModalNotification";
 import { useNavigate } from "react-router-dom";
 
+import { fetchUserArea } from "../utils/utils";
+
 const Home = () => {
   const [showModal, setShowModal] = useState(false);
   const [currentStatus, setCurrentStatus] = useState(null);
   const [showNotification, setShowNotification] = useState();
+  const [selectedArea, setSelectedArea] = useState(null);
   const navigate = useNavigate();
 
   const handleOpenModal = (status) => {
@@ -35,7 +38,7 @@ const Home = () => {
 
   const handleNotificationStart = () => {
     toggleShowNotification();
-    navigate("/exercicio/pulso/1");
+    selectedArea ? navigate(`/exercicio/${selectedArea}/1`) : navigate("/exercicio/pulso/1");
   };
 
   const handleNotificationClose = () => {
@@ -63,6 +66,7 @@ const Home = () => {
 
   useEffect(() => {
     setShowNotification(true);
+    fetchUserArea(setSelectedArea);
   }, []);
 
   return (
@@ -77,7 +81,7 @@ const Home = () => {
         <FavoriteMusicalGenres stylesList={["White Noise", "Lo-fi", "Jazz"]} />
       </div>
       <div>
-        <GoalsBox exercisesCompleted={0} totalExercises={4} timeSpent={0} totalTime={10} />
+        <GoalsBox exercisesCompleted={1} totalExercises={5} timeSpent={0} totalTime={10} />
         <Settings />
         <UnexpectedPain onStatusClick={handleOpenModal} />
       </div>
@@ -86,7 +90,7 @@ const Home = () => {
       </ModalWindow>
       <ModalNotification
         show={showNotification}
-        name="Alongamento"
+        name="Hora de se Exercitar"
         time="12h"
         image="https://oxigenioacademia.com.br/wp-content/uploads/2016/12/alongamento-768x510.png"
         onStart={handleNotificationStart}

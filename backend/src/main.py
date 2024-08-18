@@ -18,7 +18,8 @@ from api.form import router as form_router
 app = FastAPI()
 
 origins = [
-    'http://localhost:3000' # Permite comunicação frontxback por esse endereço (e port)
+    'http://localhost:3000',
+    'https://labori-projetao.vercel.app', # Permite comunicação frontxback por esse endereço (e port)
 ]
 
 app.add_middleware(
