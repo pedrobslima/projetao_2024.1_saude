@@ -1,7 +1,6 @@
 # fastapi dev backend/src/main.py
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from db.server import server_
 import uvicorn
 
 import os
@@ -10,6 +9,7 @@ import sys
 project_root = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, project_root)
 
+from db.server import server_
 from api.items import router as items_router
 from api.musica import router as music_router
 from api.exercicio import router as excercise_router
