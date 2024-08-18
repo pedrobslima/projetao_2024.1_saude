@@ -5,7 +5,7 @@ export const fetchUserArea = async (setSelectedArea) => {
   try {
     // Requsição
     const response = await api.get(`/exercicio/user-areas`);
-    const areas = response.data; //.areas_corpo_exercicios;
+    const areas = response.data.data; //.areas_corpo_exercicios;
     console.log(areas);
     if (areas && areas.length > 0) {
       // escolhe uma área aleatória se tiver multiplas
@@ -19,19 +19,23 @@ export const fetchUserArea = async (setSelectedArea) => {
 };
 
 export const updateUserAreas = async (selectedAreas) => {
-  // Log para mostrar as areas recebidas
+  // Log para mostrar as áreas recebidas
   console.log(selectedAreas);
-  selectedAreas.map(
+
+  // Corrigindo a formatação dos dados
+  const formattedAreas = selectedAreas.map(
     (item) =>
       item
         .toLowerCase() // Converte todas as letras para minúsculas
-        .replace(/ç/g, "c") // Substitui 'ç' por 'c' => [pescoco, ombro, punho...]
+        .replace(/ç/g, "c") // Substitui 'ç' por 'c'
   );
-  try {
-    // Requisição
-    const response = await api.post(`/form/update-areas`, selectedAreas);
 
-    // Log para mostrar sucesso ou falha
+  try {
+    // Requisição enviando o objeto correto
+    const response = await api.post(`/form/update-areas`, {
+      selectedAreas: formattedAreas, // Enviar como objeto
+    });
+
     if (response.status === 200) {
       console.log("Áreas do corpo atualizadas com sucesso:", response.data);
     } else {

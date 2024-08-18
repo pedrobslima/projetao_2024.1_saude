@@ -4,6 +4,11 @@ from api.utils import *
 #from backend.src.api.utils import *
 from schemas import *
 from services import *
+from typing import List
+
+# Definindo o esquema do corpo da requisição
+class SelectedAreasRequest(BaseModel):
+    selectedAreas: List[str]
 
 router = APIRouter()
 
@@ -22,8 +27,8 @@ router = APIRouter()
                     "description": "Update Error"
                 }
             })
-async def updateUserAreas(selectedAreas, user:str="dvd@cin.ufpe.br"):
+async def updateUserAreas(request: SelectedAreasRequest, user: str = "dvd@cin.ufpe.br"):
+    # Acessar os dados da requisição
+    selectedAreas = request.selectedAreas
     response = FormService().updateAreas(selectedAreas, user)
-    # Redirect to /docs (relative URL) http://127.0.0.1:8000/exercicio/pes
-    #return {'response': response.data}
     return response
