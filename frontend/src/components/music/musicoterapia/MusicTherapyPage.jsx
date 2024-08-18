@@ -55,7 +55,7 @@ function MusicTherapyPage({ ref }) {
   };
 
   const nextMusic = () => {
-    let nextMusicIndex = musicaId + 1
+    let nextMusicIndex = parseInt(musicaId, 10) + 1
     if (nextMusicIndex >= playlist.length) {
       nextMusicIndex = 0
     }
@@ -63,7 +63,7 @@ function MusicTherapyPage({ ref }) {
   }
 
   const previousMusic = () => {
-    let previousMusicIndex = musicaId - 1
+    let previousMusicIndex = parseInt(musicaId, 10) - 1
     if (previousMusicIndex < 0) {
       previousMusicIndex = playlist.length - 1
     }
