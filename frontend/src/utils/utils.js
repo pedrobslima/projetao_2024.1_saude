@@ -19,6 +19,12 @@ export const fetchUserArea = async (setSelectedArea) => {
 };
 
 export const updateUserAreas = async (selectedAreas) => {
+  // Verificar se 'selectedAreas' contém apenas 'Nenhum'
+  if (selectedAreas.length === 1 && selectedAreas[0] === "Nenhum") {
+    // Substituir por ['ombro', 'pescoço', 'punho']
+    selectedAreas = ["ombro", "pescoco", "punho"];
+  }
+
   // Log para mostrar as áreas recebidas
   console.log(selectedAreas);
 
