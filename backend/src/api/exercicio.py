@@ -2,7 +2,7 @@ from fastapi import status
 from fastapi.responses import RedirectResponse
 from api.utils import *
 from schemas import *
-from services import *
+from services import ExerciseService
 
 router = APIRouter()
 

@@ -1,9 +1,8 @@
 from api.utils import *
 from fastapi import status
 from fastapi.responses import RedirectResponse
-from db.server import server_
 from schemas import *
-from services import *
+from services import MusicService
 #from backend.src.api.utils import *
 
 router = APIRouter()

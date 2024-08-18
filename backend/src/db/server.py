@@ -4,7 +4,7 @@ default= 'dvd@cin.ufpe.br'
 
 class ServerClass():
 
-    def __init__(self, path:str='backend/src/db/database.json'):
+    def __init__(self, path:str='src/db/database.json'):
         self.path = path
         self.__load()
         
