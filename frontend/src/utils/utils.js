@@ -45,8 +45,10 @@ export const updateUserAreas = async (selectedAreas) => {
 export const getPageTitle = (pathname) => {
   if (pathname === "/home") {
     return "Menu Inicial";
-  } else if (pathname.startsWith("/musica")) {
+  } else if (pathname.startsWith("/musica/")) {
     return "Musicoterapia";
+  } else if (pathname.startsWith("/musica")) {
+    return "Playlists";
   } else if (pathname.startsWith("/exercicio")) {
     return "Exercícios";
   } else {
