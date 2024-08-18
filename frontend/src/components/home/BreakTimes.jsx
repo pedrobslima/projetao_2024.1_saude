@@ -24,9 +24,7 @@ const BreakTimes = ({ title, breaks }) => {
             ))}
           </div>
         </div>
-        <div className={styles.rightContainer}>
-          <EditButton list="Horários" />
-        </div>
+        <div className={styles.rightContainer}></div>
       </div>
     </div>
   );
