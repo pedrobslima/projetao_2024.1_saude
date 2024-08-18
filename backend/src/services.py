@@ -62,6 +62,20 @@ class ExerciseService():
                 data=post_response
             )
 
+    @staticmethod
+    def getUserAreas(user:str='dvd@cin.ufpe.br') -> HttpResponseModel:
+        response = db.fetchUserArea(user)
+        if response is None:
+            return HttpResponseModel(
+                message=HTTPResponses.ITEM_NOT_FOUND().message,
+                status_code=HTTPResponses.ITEM_NOT_FOUND().status_code
+            )
+        return HttpResponseModel(
+            message=HTTPResponses.ITEM_FOUND().message,
+            status_code=HTTPResponses.ITEM_FOUND().status_code,
+            data=response
+        )
+
 class MusicService():
     @staticmethod
     def getMultPlays(user:str='dvd@cin.ufpe.br', limit:int=0):
@@ -104,4 +118,20 @@ class MusicService():
                 status_code=HTTPResponses.BAD_REQUEST().status_code,
                 )
     
-#print(MusicService().getPlaylist('0000'))
+class FormService():
+    @staticmethod
+    def updateAreas(selectedAreas, user:str='dvd@cin.ufpe.br') -> HttpResponseModel:
+        response = db.updateUserAreas(selectedAreas, user)
+        if(response['failure']):
+            return HttpResponseModel(
+                message=HTTPResponses.SERVER_ERROR().message,
+                status_code=HTTPResponses.SERVER_ERROR().status_code,
+                data=response
+            )
+        return HttpResponseModel(
+            message=HTTPResponses.ITEM_EDITED().message,
+            status_code=HTTPResponses.ITEM_EDITED().status_code,
+            data=response
+        )
+
+#print(ExerciseService().getUserAreas("cd@cin.ufpe.br"))
