@@ -13,6 +13,7 @@ sys.path.insert(0, project_root)
 from api.items import router as items_router
 from api.musica import router as music_router
 from api.exercicio import router as excercise_router
+from api.form import router as form_router
 
 app = FastAPI()
 
@@ -41,3 +42,5 @@ app.include_router(items_router, prefix='/items', tags=['items'])
 app.include_router(music_router, prefix='/musica', tags=['musica'])
 # Exercises
 app.include_router(excercise_router, prefix='/exercicio', tags=['exercicio'])
+# Form
+app.include_router(form_router, prefix='/form', tags=['form'])

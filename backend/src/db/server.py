@@ -128,10 +128,25 @@ class ServerClass():
     #def editMusicGenres(self, input_info:list, user:str=default) -> bool:
     #    if(self.getUserInfo(user) is not None):
             
+    def fetchUserArea(self, user:str=default) -> list|None:
+        user_info = self.getUserInfo(user)
+        if(user_info is not None):
+            return user_info['areas']
+
+    def updateUserAreas(self, selectedAreas, user:str=default) -> dict:
+        check = self.getUserInfo(user) is None
+        if(not(check)):
+            updated_areas = []
+            for area in selectedAreas:
+                if(area in self.db["areas"]):
+                    updated_areas.append(area)
+            self.db["users"][user]["areas"] = updated_areas
+            self.__write()
+        return {"failure": check, "data": selectedAreas}
 
     # POST:
     #def postX(self):
     #    pass
 
 server_ = ServerClass()
-#print(server_.getAreaExerc('pes'))
+#print(server_.fetchUserArea("cd@cin.ufpe.br"))

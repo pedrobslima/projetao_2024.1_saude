@@ -1,8 +1,6 @@
 from fastapi import status
 from fastapi.responses import RedirectResponse
 from api.utils import *
-#from backend.src.api.utils import *
-from db.server import server_
 from schemas import *
 from services import *
 
@@ -17,14 +15,29 @@ async def main(user:str="dvd@cin.ufpe.br"):
     #return {'response': response.data}
     return response.data
 
-@router.get("/{area}")
-async def main(area:str, user:str="dvd@cin.ufpe.br"):
-    response = ExerciseService().getAreaExerc(area)
-    if(response.status_code == 404):
-        return response
+@router.get("/{area}",
+            response_model=HttpResponseModel,
+            status_code=status.HTTP_200_OK,
+            description="Get User Areas",
+            tags = ['fetch_user_areas'],
+            responses={
+                status.HTTP_200_OK:{
+                    "model": HttpResponseModel,
+                    "description": "Fetch Success"
+                },
+                status.HTTP_404_NOT_FOUND:{
+                    "model": HttpResponseModel,
+                    "description": "Fetch Error"
+                }
+            })
+async def area(area:str, user:str="dvd@cin.ufpe.br"):
+    if(area == 'user-areas'): # gambiarra, mas não quero arrumar as rotas no frontend tbm
+        response = ExerciseService().getUserAreas(user)
+    else:
+        response = ExerciseService().getAreaExerc(area)
     # Redirect to /docs (relative URL) http://127.0.0.1:8000/exercicio/pes
-    return response.data
-    return RedirectResponse(url=f"/exercicio/{area}/{response.data}", status_code=status.HTTP_302_FOUND)
+    return response
+    #return RedirectResponse(url=f"/exercicio/{area}/{response.data}", status_code=status.HTTP_302_FOUND)
 
 # ExerciseVideoPage
 @router.get("/{area}/{exercise_id}")
