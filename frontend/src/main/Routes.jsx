@@ -2,6 +2,7 @@ import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import Home from "../pages/Home";
+import SelectPlaylistPage from "../pages/SelectPlaylistPage/SelectPlaylistPage";
 import Musicoterapia from "../pages/Musica/Musicoterapia";
 import ExerciseVideoPage from "../pages/Exercicio/ExerciseVideoPage";
 import ExerciseComplete from "../pages/Exercicio/ExerciseCompletePage";
@@ -12,7 +13,7 @@ function AppRoutes() {
     <Routes>
       <Route path="/home" element={<Home />} />
       <Route path="/questionario/:step" element={<Questionario />} />
-      <Route path="/musica" element={<Musicoterapia />} />
+      <Route path="/musica" element={<SelectPlaylistPage />} />
       <Route path="/musica/:playlistId" element={<Musicoterapia />} />
       <Route path="/musica/:playlistId/:musicaId" element={<Musicoterapia />} />
       <Route path="/exercicio/:area/:id" element={<ExerciseVideoPage />} />

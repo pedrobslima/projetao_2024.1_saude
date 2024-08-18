@@ -1,0 +1,12 @@
+.div {
+    display: flex;
+    justify-content: center;
+}
+
+.buttonCont {
+    display: grid;
+    grid-template-columns: 21vw 21vw 21vw;
+    grid-template-rows: 40vh 40vh;
+    row-gap: 5px;
+    column-gap: 10px;
+}
